@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="ingredientViewModel"
+            type="com.example.cookbookht.ui.detailContent.detailIngredient.IngredientDetailViewModel" />
+
+        <variable
+            name="ingredientAdapter"
+            type="com.example.cookbookht.ui.detailContent.detailIngredient.IngredientDetailAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_border_view_pager"
+        android:padding="@dimen/_15sdp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewIngredient"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:adapter="@{ingredientAdapter}"
+            bind:data="@{ingredientViewModel}"
+            bind:listitem="@layout/item_ingredient"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

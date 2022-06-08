@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="ingredient"
+            type="com.example.cookbookht.data.model.Ingredient" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_62sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/custom_bg_item_ingredient"
+        android:paddingVertical="@dimen/_7sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageIngredient"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="80:52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:textColor="@color/color_black_dark"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageIngredient"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{ingredient.name}"/>
+
+        <TextView
+            android:id="@+id/textViewAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:textColor="@color/color_grey_black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="italic"
+            android:text="@{ingredient.amount.toString()}"
+            app:layout_constraintStart_toEndOf="@+id/imageIngredient"
+            app:layout_constraintTop_toBottomOf="@+id/textViewIngredient" />
+
+        <TextView
+            android:id="@+id/textViewUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:textColor="@color/color_grey_black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="italic"
+            android:text="@{ingredient.unit}"
+            app:layout_constraintStart_toEndOf="@+id/textViewAmount"
+            app:layout_constraintTop_toBottomOf="@+id/textViewIngredient" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
