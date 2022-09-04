@@ -85,7 +85,5 @@ class HomePageFragment : Fragment() {
     companion object {
 
         private const val OFF_SCREEN_PAGE_LIMIT = 3
-
-        fun newInstance() = HomePageFragment()
     }
 }

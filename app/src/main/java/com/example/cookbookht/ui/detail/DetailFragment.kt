@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavArgument
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cookbookht.R
@@ -19,6 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class DetailFragment : Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
+    private var recipeId: Int? = null
     private lateinit var binding: FragmentDetailBinding
     private val recipeDetailViewModel: RecipeDetailViewModel by sharedViewModel()
 
@@ -33,6 +36,9 @@ class DetailFragment : Fragment() {
             false
         ).apply {
             lifecycleOwner = this@DetailFragment
+            arguments?.let {
+                recipeId = it.getInt("recipe")
+            }
         }
         return binding.root
     }
@@ -49,13 +55,14 @@ class DetailFragment : Fragment() {
         }
 
         buttonCook.setOnClickListener {
-            findNavController().navigate(R.id.contentDetailFragment)
+            val bundle = bundleOf("recipeDetail" to recipeId)
+            findNavController().navigate(R.id.contentDetailFragment, bundle)
         }
     }
 
     private fun setupObserver() {
         with(recipeDetailViewModel) {
-            fetchRecipeDetail(args.recipe.id)
+            fetchRecipeDetail(recipeId)
             recipeDetailLiveData.observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> {

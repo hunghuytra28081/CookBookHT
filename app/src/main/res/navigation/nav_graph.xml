@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
 
     <fragment
@@ -23,6 +26,7 @@
         android:name="com.example.cookbookht.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home"
         android:label="HomeFragment">
+
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -50,10 +54,14 @@
     <fragment
         android:id="@+id/contentDetailFragment"
         android:name="com.example.cookbookht.ui.detailContent.ContentDetailFragment"
-        android:label="ContentDetailFragment" >
-        <argument
-            android:name="recipeDetail"
-            app:argType="com.example.cookbookht.data.model.RecipeDetail" />
+        android:label="ContentDetailFragment"
+        tools:layout="@layout/fragment_content_detail">
+<!--        <argument-->
+<!--            android:name="recipeDetail"-->
+<!--            app:argType="com.example.cookbookht.data.model.RecipeDetail" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_contentDetailFragment_to_ingredientDetailFragment"-->
+<!--            app:destination="@id/ingredientDetailFragment" />-->
     </fragment>
 
     <fragment
@@ -65,4 +73,9 @@
             android:name="recipeDetail"
             app:argType="com.example.cookbookht.data.model.RecipeDetail" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.cookbookht.ui.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

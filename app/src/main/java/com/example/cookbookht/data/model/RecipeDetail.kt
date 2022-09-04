@@ -28,7 +28,7 @@ data class RecipeDetail(
     val summary: String?,
     @SerializedName("extendedIngredients")
     @Expose
-    val ingredient: MutableList<Ingredient>?,
+    val ingredient: MutableList<Ingredient>,
     @SerializedName("nutrition")
     @Expose
     val nutrients: @RawValue NutrientResponse?,

@@ -18,6 +18,8 @@ class IngredientDetailFragment : Fragment() {
     private val ingredientViewModel by viewModel<IngredientDetailViewModel>()
     private val ingredientAdapter = IngredientDetailAdapter(::onClickItemIngredient)
 
+    var recipeDetailId: Int? = null
+
     private val args: IngredientDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -48,7 +50,7 @@ class IngredientDetailFragment : Fragment() {
 
     private fun registerObserver() {
         with(ingredientViewModel) {
-            fetchIngredientDetail(args.recipeDetail.id)
+            fetchIngredientDetail(recipeDetailId)
             ingredientDetailLiveData.observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> {

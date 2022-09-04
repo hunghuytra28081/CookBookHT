@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.cookbookht.R
 import com.example.cookbookht.databinding.FragmentContentDetailBinding
 import com.example.cookbookht.ui.detailContent.detailIngredient.IngredientDetailFragment
 import com.example.cookbookht.ui.detailContent.detailNutrient.NutrientDetailFragment
@@ -19,6 +20,11 @@ class ContentDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentContentDetailBinding
     private val contentDetailAdapter by lazy { ContentDetailAdapter(this) }
+    private var recipeDetailId: Int? = null
+
+    private val childFragment by lazy {
+        childFragmentManager.findFragmentById(R.id.ingredientDetailFragment) as? IngredientDetailFragment
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +34,10 @@ class ContentDetailFragment : Fragment() {
             .apply {
                 lifecycleOwner = this@ContentDetailFragment
             }
+        arguments?.let {
+            recipeDetailId = it.getInt("recipeDetail")
+        }
+        childFragment?.recipeDetailId = recipeDetailId
         return binding.root
     }
 

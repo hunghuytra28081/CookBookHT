@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             bind:adapter="@{ingredientAdapter}"
-            bind:data="@{ingredientViewModel}"
+            bind:data="@{ingredientViewModel.ingredient}"
             bind:listitem="@layout/item_ingredient"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

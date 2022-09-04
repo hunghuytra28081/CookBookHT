@@ -16,7 +16,8 @@
     <color name="color_orange_turmeric">#EE9000</color>
     <color name="color_green_brown">#889C55</color>
     <color name="color_black_light">#C6C6C6</color>
-    <color name="color_black_dark">#2C2C2C</color>
+    <color name="color_black_dark">#E62C2C2C</color>
     <color name="color_grey_black">#757575</color>
     <color name="color_purple_black">#1A15141C</color>
+    <color name="transparent">#FFFFFFFF</color>
 </resources>

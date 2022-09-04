@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">HT-Cook</string>
+    <string name="app_logo_text"><font color="#E6000000">HT</font><font color="#E647408F"><b>Cook</b></font></string>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="favorite">Favorite</string>
