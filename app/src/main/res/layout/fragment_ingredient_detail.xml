@@ -29,7 +29,13 @@
             app:layout_constraintTop_toTopOf="parent"
             bind:adapter="@{ingredientAdapter}"
             bind:data="@{ingredientViewModel.ingredient}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             bind:listitem="@layout/item_ingredient"/>
+
+
+        <include
+            android:id="@+id/progressLayout"
+            layout="@layout/loader_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

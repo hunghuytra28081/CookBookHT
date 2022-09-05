@@ -12,7 +12,7 @@ interface APIService {
     @GET("random")
     suspend fun getRecipe(@Query("number") number: Int): RecipeResponse
 
-    //https://api.spoonacular.com/recipes/716429/information?apiKey=cf90ee8d96ad45a68cb4c292a2aabdfa&includeNutrition=true
+    //api.spoonacular.com/recipes/716429/information?apiKey=cf90ee8d96ad45a68cb4c292a2aabdfa&includeNutrition=true
     @GET("{id}/information")
     suspend fun getRecipeDetail(
         @Path("id") id: Int?,

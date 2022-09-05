@@ -22,10 +22,6 @@ class ContentDetailFragment : Fragment() {
     private val contentDetailAdapter by lazy { ContentDetailAdapter(this) }
     private var recipeDetailId: Int? = null
 
-    private val childFragment by lazy {
-        childFragmentManager.findFragmentById(R.id.ingredientDetailFragment) as? IngredientDetailFragment
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +33,6 @@ class ContentDetailFragment : Fragment() {
         arguments?.let {
             recipeDetailId = it.getInt("recipeDetail")
         }
-        childFragment?.recipeDetailId = recipeDetailId
         return binding.root
     }
 
@@ -56,7 +51,11 @@ class ContentDetailFragment : Fragment() {
     private fun initTab() {
         binding.run {
             viewPagerContentDetail.apply {
-                adapter = contentDetailAdapter
+                adapter = contentDetailAdapter.apply {
+                    addFragments(IngredientDetailFragment.newInstance(recipeDetailId),
+                        NutrientDetailFragment.newInstance(recipeDetailId),
+                        StepDetailFragment.newInstance())
+                }
                 setPageTransformer(ZoomOutPageTransformer())
             }
 

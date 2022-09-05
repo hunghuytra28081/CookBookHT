@@ -12,13 +12,13 @@
             type="com.example.cookbookht.data.model.RecipeDetail" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageDetailView"
@@ -49,8 +49,8 @@
                 android:background="@drawable/custom_border_title_detail"
                 android:fontFamily="@font/roboto"
                 android:paddingHorizontal="@dimen/_20sdp"
-                android:paddingVertical="@dimen/_6sdp"
-                android:layout_marginTop="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:paddingTop="@dimen/_10sdp"
                 android:text="@{recipeDetail.title}"
                 android:textColor="@color/color_black_dark"
                 android:textSize="@dimen/_15sdp"
@@ -66,7 +66,8 @@
                 android:paddingHorizontal="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/titleDetailTextView">
+                app:layout_constraintTop_toBottomOf="@id/titleDetailTextView"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <ScrollView
                     android:id="@+id/summaryScrollView"
@@ -74,6 +75,7 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
                     android:fadeScrollbars="false"
                     app:layout_constraintDimensionRatio="400: 134"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -93,104 +95,117 @@
                         bind:setTextHtml="@{recipeDetail.summary}" />
                 </ScrollView>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/countLinear"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:weightSum="3"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/summaryScrollView">
+                    app:layout_constraintTop_toBottomOf="@id/summaryScrollView"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/likeCountTextView"
-                        android:layout_width="0dp"
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linearCount"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:text="@{recipeDetail.like.toString()}"
-                        android:textColor="@color/color_black_dark"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold" />
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonCook">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/ingredientCountTextView"
-                        android:layout_width="0dp"
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/countLinear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_30sdp"
+                            android:weightSum="3">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/likeCountTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:text="@{recipeDetail.like.toString()}"
+                                android:textColor="@color/color_black_dark"
+                                android:textSize="@dimen/_16sdp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/ingredientCountTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                bind:setTextSize="@{recipeDetail.ingredient.size()}"
+                                android:textColor="@color/color_black_dark"
+                                android:textSize="@dimen/_16sdp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/stepCountTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@{recipeDetail.readyInMinutes.toString()}"
+                                android:textColor="@color/color_black_dark"
+                                android:textSize="@dimen/_16sdp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/generalityLinear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center"
+                                android:text="@string/likes" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center"
+                                android:text="@string/ingredient" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto"
+                                android:gravity="center"
+                                android:text="@string/minutes" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonCook"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        bind:setTextSize="@{recipeDetail.ingredient.size()}"
-                        android:textColor="@color/color_black_dark"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/stepCountTextView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@{recipeDetail.readyInMinutes.toString()}"
-                        android:textColor="@color/color_black_dark"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/generalityLinear"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/countLinear">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/custom_border_button"
                         android:fontFamily="@font/roboto"
-                        android:gravity="center"
-                        android:text="@string/likes" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto"
-                        android:gravity="center"
-                        android:text="@string/ingredient" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto"
-                        android:gravity="center"
-                        android:text="@string/minutes" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCook"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/custom_border_button"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/let_s_cook"
-                    android:textAllCaps="false"
-                    android:textColor="@color/color_white"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/generalityLinear" />
+                        android:text="@string/let_s_cook"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        android:translationY="-10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearCount"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include
@@ -198,5 +213,5 @@
                 layout="@layout/loader_view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+<!--    </ScrollView>-->
 </layout>

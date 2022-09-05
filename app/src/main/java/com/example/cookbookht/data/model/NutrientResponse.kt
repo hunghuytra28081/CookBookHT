@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class NutrientResponse(
     @SerializedName("nutrients")
     @Expose
-    val nutrients: ArrayList<Nutrient>?
+    val nutrients: MutableList<Nutrient>
 )

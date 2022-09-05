@@ -11,14 +11,15 @@ class ContentDetailAdapter(
     fragment: Fragment
 ) : FragmentStateAdapter(fragment) {
 
-    override fun getItemCount() = 3
+    private val fragments by lazy { arrayListOf<Fragment>() }
+
+    fun addFragments(vararg fragments: Fragment){
+        this.fragments.addAll(fragments)
+    }
+
+    override fun getItemCount() = fragments.size
 
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            TypeContentDetail.INGREDIENT.ordinal -> IngredientDetailFragment.newInstance()
-            TypeContentDetail.NUTRIENT.ordinal -> NutrientDetailFragment.newInstance()
-            TypeContentDetail.STEP.ordinal -> StepDetailFragment.newInstance()
-            else -> IngredientDetailFragment.newInstance()
-        }
+        return fragments[position]
     }
 }

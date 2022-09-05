@@ -3,69 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="ingredient"
-            type="com.example.cookbookht.data.model.Ingredient" />
 
+        <variable
+            name="nutrient"
+            type="com.example.cookbookht.data.model.Nutrient" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_58sdp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_5sdp"
         android:background="@drawable/custom_bg_item_ingredient"
         android:paddingVertical="@dimen/_7sdp">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageIngredient"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="75:52"
-            app:layout_constraintHeight_percent="0.85"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewIngredient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{nutrient.name}"
             android:textColor="@color/color_black_dark"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageIngredient"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewNext"
-            android:text="@{ingredient.name}"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewAmount"/>
 
         <TextView
             android:id="@+id/textViewAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{nutrient.amount.toString()}"
             android:textColor="@color/color_grey_black"
             android:textSize="@dimen/_11sdp"
             android:textStyle="italic"
-            android:text="@{ingredient.amount.toString()}"
-            app:layout_constraintStart_toEndOf="@+id/imageIngredient"
-            app:layout_constraintTop_toBottomOf="@+id/textViewIngredient" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewUnit"/>
 
         <TextView
             android:id="@+id/textViewUnit"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_20sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{nutrient.unit}"
             android:textColor="@color/color_grey_black"
             android:textSize="@dimen/_12sdp"
             android:textStyle="italic"
-            android:text="@{ingredient.unit}"
-            app:layout_constraintStart_toEndOf="@+id/textViewAmount"
-            app:layout_constraintTop_toBottomOf="@+id/textViewIngredient"
+            android:layout_marginEnd="@dimen/_4sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewNext"/>
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -77,5 +65,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

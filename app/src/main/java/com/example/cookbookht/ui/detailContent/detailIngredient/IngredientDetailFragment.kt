@@ -9,16 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.cookbookht.data.model.Ingredient
 import com.example.cookbookht.databinding.FragmentIngredientDetailBinding
+import com.example.cookbookht.extension.toGone
+import com.example.cookbookht.extension.toVisible
 import com.example.cookbookht.utils.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class IngredientDetailFragment : Fragment() {
+class IngredientDetailFragment(
+    private val recipeDetailId: Int?
+) : Fragment() {
 
     private lateinit var binding: FragmentIngredientDetailBinding
     private val ingredientViewModel by viewModel<IngredientDetailViewModel>()
     private val ingredientAdapter = IngredientDetailAdapter(::onClickItemIngredient)
-
-    var recipeDetailId: Int? = null
 
     private val args: IngredientDetailFragmentArgs by navArgs()
 
@@ -54,13 +56,13 @@ class IngredientDetailFragment : Fragment() {
             ingredientDetailLiveData.observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> {
-
+                        binding.progressLayout.toVisible()
                     }
                     Status.SUCCESS -> {
-
+                        binding.progressLayout.toGone()
                     }
                     Status.ERROR -> {
-
+                        binding.progressLayout.toGone()
                     }
                 }
             }
@@ -73,8 +75,6 @@ class IngredientDetailFragment : Fragment() {
 
     companion object {
 
-        const val BUNDLE_INGREDIENT_ID = "BUNDLE_PHOTO_ID"
-
-        fun newInstance() = IngredientDetailFragment()
+        fun newInstance(recipeDetailId: Int?) = IngredientDetailFragment(recipeDetailId)
     }
 }

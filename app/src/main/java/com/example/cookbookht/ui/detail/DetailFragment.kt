@@ -1,5 +1,6 @@
 package com.example.cookbookht.ui.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,9 +21,9 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class DetailFragment : Fragment() {
 
+    private lateinit var binding: FragmentDetailBinding
     private val args: DetailFragmentArgs by navArgs()
     private var recipeId: Int? = null
-    private lateinit var binding: FragmentDetailBinding
     private val recipeDetailViewModel: RecipeDetailViewModel by sharedViewModel()
 
     override fun onCreateView(
@@ -45,8 +46,12 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpView()
         setupObserver()
         handleEvent()
+    }
+
+    private fun setUpView() {
     }
 
     private fun handleEvent() {

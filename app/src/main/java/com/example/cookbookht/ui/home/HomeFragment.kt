@@ -79,11 +79,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun initSliderData() {
-        dataSlide.apply {
-            ContextCompat.getDrawable(requireContext(), R.drawable.cookit)?.let { add(it) }
-            ContextCompat.getDrawable(requireContext(), R.drawable.suonkhotet)?.let { add(it) }
-            ContextCompat.getDrawable(requireContext(), R.drawable.tet)?.let { add(it) }
-            ContextCompat.getDrawable(requireContext(), R.drawable.banhu)?.let { add(it) }
+        if (dataSlide.isEmpty()){
+            dataSlide.apply {
+                ContextCompat.getDrawable(requireContext(), R.drawable.cookit)?.let { add(it) }
+                ContextCompat.getDrawable(requireContext(), R.drawable.suonkhotet)?.let { add(it) }
+                ContextCompat.getDrawable(requireContext(), R.drawable.tet)?.let { add(it) }
+                ContextCompat.getDrawable(requireContext(), R.drawable.banhu)?.let { add(it) }
+            }
         }
     }
 
