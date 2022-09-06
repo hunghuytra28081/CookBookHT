@@ -34,5 +34,5 @@ data class RecipeDetail(
     val nutrients: @RawValue NutrientResponse,
     @SerializedName("analyzedInstructions")
     @Expose
-    val instructions: @RawValue MutableList<InstructionResponse>?
+    val instructions: @RawValue MutableList<InstructionResponse>
 ): Parcelable

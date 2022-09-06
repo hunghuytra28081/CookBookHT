@@ -34,6 +34,7 @@
             android:id="@+id/textViewAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
             android:text="@{nutrient.amount.toString()}"
             android:textColor="@color/color_grey_black"
             android:textSize="@dimen/_11sdp"
@@ -44,9 +45,8 @@
 
         <TextView
             android:id="@+id/textViewUnit"
-            android:layout_width="@dimen/_20sdp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
             android:text="@{nutrient.unit}"
             android:textColor="@color/color_grey_black"
             android:textSize="@dimen/_12sdp"

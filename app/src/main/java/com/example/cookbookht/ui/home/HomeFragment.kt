@@ -2,6 +2,7 @@ package com.example.cookbookht.ui.home
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -116,6 +117,7 @@ class HomeFragment : Fragment() {
 //        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(recipe)
         val bundle = bundleOf("recipe" to recipe.id)
         findNavController().navigate(R.id.detailFragment, bundle)
+        Log.d("Main12345", "onClickItemHome: ${recipe.id}")
     }
 
     companion object {

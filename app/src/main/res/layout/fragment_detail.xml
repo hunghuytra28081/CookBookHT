@@ -77,7 +77,7 @@
                     android:layout_marginEnd="@dimen/_4sdp"
                     android:layout_marginTop="@dimen/_6sdp"
                     android:fadeScrollbars="false"
-                    app:layout_constraintDimensionRatio="400: 134"
+                    app:layout_constraintDimensionRatio="400: 214"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">

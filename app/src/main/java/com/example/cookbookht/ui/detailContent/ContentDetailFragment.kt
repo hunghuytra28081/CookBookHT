@@ -54,7 +54,7 @@ class ContentDetailFragment : Fragment() {
                 adapter = contentDetailAdapter.apply {
                     addFragments(IngredientDetailFragment.newInstance(recipeDetailId),
                         NutrientDetailFragment.newInstance(recipeDetailId),
-                        StepDetailFragment.newInstance())
+                        StepDetailFragment.newInstance(recipeDetailId))
                 }
                 setPageTransformer(ZoomOutPageTransformer())
             }

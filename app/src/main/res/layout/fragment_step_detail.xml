@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/custom_border_view_pager"
-    android:padding="@dimen/_15sdp"
-    tools:context=".ui.detailContent.detailStep.StepDetailFragment">
 
-    <TextView
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="stepAdapter"
+            type="com.example.cookbookht.ui.detailContent.detailStep.StepDetailAdapter" />
+
+        <variable
+            name="stepViewModel"
+            type="com.example.cookbookht.ui.detailContent.detailStep.StepDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/custom_border_view_pager"
+        android:padding="@dimen/_15sdp"
+        tools:context=".ui.detailContent.detailStep.StepDetailFragment">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewStep"
+            bind:adapter="@{stepAdapter}"
+            bind:data="@{stepViewModel.step}"
+            bind:listitem="@layout/item_step"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <include
+            android:id="@+id/progressLayout"
+            layout="@layout/loader_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

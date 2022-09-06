@@ -9,5 +9,5 @@ data class InstructionResponse(
     val name: String?,
     @SerializedName("steps")
     @Expose
-    val steps: MutableList<Step>?
+    val steps: MutableList<Step>
 )
