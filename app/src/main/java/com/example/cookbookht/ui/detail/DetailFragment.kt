@@ -52,6 +52,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setUpView() {
+        binding.progressLayout.toVisible()
     }
 
     private fun handleEvent() {

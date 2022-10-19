@@ -52,7 +52,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_25sdp"
-                android:padding="@dimen/_15sdp"
+                bind:adapter="@{adapter}"
+                bind:data="@{viewModel.recipes}"
+                bind:isLoad="@{viewModel.isLoad}"
+                bind:onLoadMore="@{viewModel.onLoadData}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_recipe_home"/>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

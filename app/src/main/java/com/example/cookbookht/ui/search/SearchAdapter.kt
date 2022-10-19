@@ -5,4 +5,5 @@ import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.databinding.ItemRecipeHomeBinding
 
 class SearchAdapter {
+
 }

@@ -15,9 +15,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.databinding.FragmentHomeBinding
+import com.example.cookbookht.extension.toGone
+import com.example.cookbookht.extension.toVisible
 import com.example.cookbookht.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.Exception
 
 class HomeFragment : Fragment() {
 
@@ -73,8 +76,12 @@ class HomeFragment : Fragment() {
             unselected
         }
         indicator.updateIndicatorCounts(sliderViewPager.indicatorCount)
-        sliderViewPager.onIndicatorProgress = { selectingPosition, progress ->
-            indicator.onPageScrolled(selectingPosition, progress)
+        try {
+            sliderViewPager.onIndicatorProgress = { selectingPosition, progress ->
+                indicator.onPageScrolled(selectingPosition, progress)
+            }
+        }catch (e: Exception){
+
         }
         indicator.updateIndicatorCounts(sliderViewPager.indicatorCount)
     }
@@ -102,11 +109,14 @@ class HomeFragment : Fragment() {
         homeViewModel.resource.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.LOADING -> {
+                    binding.progressLayout.toVisible()
                 }
                 Status.SUCCESS -> {
+                    binding.progressLayout.toGone()
                     binding.swipeRefresh.isRefreshing = false
                 }
                 Status.ERROR -> {
+                    binding.progressLayout.toGone()
                     binding.swipeRefresh.isRefreshing = false
                 }
             }

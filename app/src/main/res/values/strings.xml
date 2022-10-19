@@ -15,4 +15,16 @@
     <string name="back_again">Back again to exit</string>
     <string name="minutes">Minutes</string>
     <string name="let_s_cook">Let\'s Cook</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Cooking Recipe</string>
+    <string name="slide_1_desc">Stay up to date with delicious recipes from many restaurants around the world.</string>
+
+    <string name="slide_2_title">Tip &amp; advice</string>
+    <string name="slide_2_desc">Life tips and helpful advice to help you have a lot of experience in the kitchen.</string>
+
+    <string name="slide_3_title">Decorating</string>
+    <string name="slide_3_desc">Decorating food and interior design helps to impress others.</string>
 </resources>

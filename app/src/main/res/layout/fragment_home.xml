@@ -137,25 +137,52 @@
             android:fillViewport="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipeRefresh"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                bind:onRefresh="@{viewModel.onRefresh}">
+                android:layout_height="wrap_content">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recipeHomeRecyclerView"
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipeRefresh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    bind:adapter="@{homeAdapter}"
-                    bind:data="@{viewModel.recipe}"
-                    bind:isLoad="@{viewModel.isLoad}"
-                    bind:onLoadMore="@{viewModel.onLoadData}"
-                    tools:listitem="@layout/item_recipe_home" />
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    bind:onRefresh="@{viewModel.onRefresh}">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recipeHomeRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        bind:adapter="@{homeAdapter}"
+                        bind:data="@{viewModel.recipe}"
+                        bind:isLoad="@{viewModel.isLoad}"
+                        bind:onLoadMore="@{viewModel.onLoadData}"
+                        tools:listitem="@layout/item_recipe_home" />
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+<!--                <include-->
+<!--                    android:id="@+id/progressLayout"-->
+<!--                    layout="@layout/loader_view" />-->
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/progressLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:background="@color/color_white">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/spin_kit"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_marginTop="@dimen/_100sdp"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/load"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

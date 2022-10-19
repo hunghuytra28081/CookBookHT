@@ -24,7 +24,7 @@ class SearchViewModel(
     private var keyword: String = Constant.DEFAULT_STRING
 
     private val _recipes = MutableLiveData<MutableList<Recipe>>()
-    private val recipes: MutableLiveData<MutableList<Recipe>>
+    val recipes: MutableLiveData<MutableList<Recipe>>
         get() = _recipes
 
     private val _resource = MutableLiveData<Resource<MutableLiveData<MutableList<Recipe>>>>()
@@ -35,6 +35,9 @@ class SearchViewModel(
     val isLoad: MutableLiveData<Boolean>
         get() = _isLoad
 
+    init {
+        searchRecipe(keyword)
+    }
     override fun onLoadData() {
         _isLoad.value = true
         Handler(Looper.getMainLooper()).postDelayed({

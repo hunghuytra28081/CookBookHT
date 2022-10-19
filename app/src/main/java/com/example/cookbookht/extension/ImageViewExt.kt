@@ -9,7 +9,7 @@ import com.example.cookbookht.R
 fun ImageView.loadFromUrl(url: String) {
     Glide.with(this.context.applicationContext)
         .load(url)
-        .error(R.drawable.recipe_black)
+        .error(R.drawable.cookit)
         .placeholder(R.drawable.loading_icon_opacity)
 //        .transition(DrawableTransitionOptions.withCrossFade())
         .centerCrop()
