@@ -12,4 +12,5 @@ object Constant {
     const val IMAGE_RECIPE_SIZE = "-556x370.jpg"
     const val BASE_URL_IMAGE_INGREDIENT = "https://spoonacular.com/cdn/ingredients_100x100/"
     const val DELAY_TIME = 2000L
+    const val DATABASE_NAME = "history_cook"
 }

@@ -15,6 +15,7 @@ class MyApplication : Application() {
                 listOf(
                     apiModule,
                     retrofitModule,
+                    storageModule,
                     viewModelModule,
                     repositoryModule,
                     dataSourceModule

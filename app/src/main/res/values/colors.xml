@@ -21,4 +21,15 @@
     <color name="color_purple_black">#1A15141C</color>
     <color name="transparent">#FFFFFFFF</color>
     <color name="black_grey_text">#222222</color>
+
+    <array name="random_colors">
+        <item>#CCD9AA7E</item>
+        <item>#CC88D8B0</item>
+        <item>#CCFFCC5C</item>
+        <item>#CCFF6F69</item>
+        <item>#CCFFA4A3</item>
+        <item>#CC009688</item>
+        <item>#CCFFA348</item>
+        <item>#CC1ECDC4</item>
+    </array>
 </resources>
