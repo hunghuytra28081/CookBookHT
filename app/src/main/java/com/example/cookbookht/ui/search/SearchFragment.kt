@@ -1,5 +1,6 @@
 package com.example.cookbookht.ui.search
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +10,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
+import com.example.cookbookht.binding.onRefresh
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.repository.source.local.History
 import com.example.cookbookht.databinding.FragmentSearchBinding
 import com.example.cookbookht.ui.home.HomeAdapter
 import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.Status
-import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,14 +46,20 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initData()
         initBinding()
         registerObserver()
+        initData()
         initListener()
     }
 
     private fun initData() {
-        recyclerViewHistory.layoutManager = FlexboxLayoutManager(requireContext())
+        val flexManager = FlexboxLayoutManager(context).apply {
+            justifyContent = JustifyContent.CENTER
+            alignItems = AlignItems.STRETCH
+            flexDirection = FlexDirection.ROW
+            flexWrap = FlexWrap.WRAP
+        }
+        recyclerViewHistory.layoutManager = flexManager
     }
 
     private fun initBinding() {
@@ -64,6 +72,7 @@ class SearchFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun registerObserver() {
         searchViewModel.searchRecipe(Constant.DEFAULT_STRING)
         searchViewModel.resource.observe(viewLifecycleOwner) {
@@ -83,9 +92,10 @@ class SearchFragment : Fragment() {
         searchViewModel.history.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.LOADING -> {
-
                 }
                 Status.SUCCESS -> {
+                    historyAdapter.submitList(it.data?.reversed())
+                    historyAdapter.notifyDataSetChanged()
                 }
                 Status.ERROR -> {
 
@@ -106,6 +116,7 @@ class SearchFragment : Fragment() {
                         searchViewModel.insertHistory(History(history = it))
                     }
                     binding.searchView.clearFocus()
+                    searchViewModel.getAllHistory()
                 }
                 return true
             }
@@ -114,6 +125,10 @@ class SearchFragment : Fragment() {
                 return false
             }
         })
+
+        swipeRefresh.setOnRefreshListener {
+            searchViewModel.onRefreshSearch(searchView.query.toString())
+        }
     }
 
     private fun onClickItemHome(recipe: Recipe) {
@@ -124,7 +139,7 @@ class SearchFragment : Fragment() {
 
     private fun onClickItemHistory(history: History) {
         searchView.setQuery(history.history, false)
-        searchViewModel.searchRecipe(history.history)
+        searchViewModel.querySearch(history.history)
         binding.searchView.clearFocus()
     }
 

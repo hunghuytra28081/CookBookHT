@@ -9,6 +9,6 @@ data class History(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id :Int = 0,
-    @ColumnInfo(name = "history")
+    @ColumnInfo(name = "querySearch")
     val history: String
 )

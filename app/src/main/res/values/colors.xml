@@ -21,6 +21,7 @@
     <color name="color_purple_black">#1A15141C</color>
     <color name="transparent">#FFFFFFFF</color>
     <color name="black_grey_text">#222222</color>
+    <color name="black_grey_text_hide">#CCCCCC</color>
 
     <array name="random_colors">
         <item>#CCD9AA7E</item>

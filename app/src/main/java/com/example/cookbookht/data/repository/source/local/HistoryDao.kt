@@ -12,9 +12,9 @@ interface HistoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: History)
 
-    @Query("DELETE FROM history WHERE history = :name")
+    @Query("DELETE FROM history WHERE querySearch = :name")
     fun deleteName(name: String)
 
-    @Query("SELECT * FROM history WHERE history =:name")
+    @Query("SELECT * FROM history WHERE querySearch =:name")
     fun isExists(name: String): History?
 }

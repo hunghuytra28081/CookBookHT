@@ -58,6 +58,11 @@ class SearchViewModel(
         searchRecipe(keyword)
     }
 
+    fun onRefreshSearch(keyword: String) {
+        _recipes.value?.clear()
+        searchRecipe(keyword)
+    }
+
     fun searchRecipe(keyword: String = Constant.DEFAULT_STRING) {
         viewModelScope.launch {
             try {

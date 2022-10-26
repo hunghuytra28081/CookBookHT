@@ -12,14 +12,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/_8sdp"
-    android:layout_marginHorizontal="@dimen/_4sdp">
+    android:layout_marginHorizontal="@dimen/_3sdp">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/layoutHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_8sdp"
-        android:elevation="0dp">
+        android:background="@drawable/bg_item_history">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textHistory"
@@ -27,13 +26,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
             android:textSize="@dimen/_12sdp"
-            android:padding="@dimen/_4sdp"
-            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_2sdp"
             android:text="@{history.history}"
             android:maxLines="1"
             android:maxLength="15"
-            android:textColor="@color/black_grey_text"/>
-    </com.google.android.material.card.MaterialCardView>
+            android:ellipsize="end"
+            android:textColor="@color/color_white"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
