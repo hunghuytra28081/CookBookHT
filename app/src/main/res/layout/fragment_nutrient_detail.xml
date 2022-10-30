@@ -25,17 +25,57 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewIngredient"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/imgOpenChart"
             bind:adapter="@{nutrientAdapter}"
             bind:data="@{nutrientViewModel.nutrient}"
+            android:layout_marginBottom="@dimen/_12sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             bind:listitem="@layout/item_nutrient"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgOpenChart"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_chart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <include
             android:id="@+id/progressLayout"
             layout="@layout/loader_view" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:translationZ="@dimen/_4sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:background="@color/color_white"
+            android:translationY="1000dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_close"
+                android:padding="@dimen/_6sdp" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chartNutrient"
+                android:translationZ="@dimen/_4sdp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintTop_toBottomOf="@+id/imgClose"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
