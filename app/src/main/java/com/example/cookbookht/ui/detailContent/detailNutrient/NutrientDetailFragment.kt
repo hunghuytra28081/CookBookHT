@@ -10,6 +10,7 @@ import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.cookbookht.R
@@ -30,6 +31,8 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.android.synthetic.main.dialog_chart.*
 import kotlinx.android.synthetic.main.fragment_nutrient_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -43,6 +46,8 @@ class NutrientDetailFragment(
     private lateinit var binding: FragmentNutrientDetailBinding
     private val nutrientViewModel by viewModel<NutrientDetailViewModel>()
     private val nutrientAdapter by lazy { NutrientDetailAdapter(::onClickItemNutrient) }
+
+    private val sheetChartNutrient by lazy { BottomSheetBehavior.from(bottomSheetChart) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,7 +114,7 @@ class NutrientDetailFragment(
             chartNutrient.dragDecelerationFrictionCoef = 0.95f
 
             chartNutrient.setCenterTextTypeface(tfLight)
-//            centerText = generateCenterSpannableText()
+            chartNutrient.centerText = generateCenterSpannableText()
 
             chartNutrient.isDrawHoleEnabled = true
             chartNutrient.setHoleColor(Color.WHITE)
@@ -139,11 +144,9 @@ class NutrientDetailFragment(
             // add a selection listener
             chartNutrient.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
                 override fun onValueSelected(e: Entry?, h: Highlight?) {
-                    TODO("Not yet implemented")
                 }
 
                 override fun onNothingSelected() {
-                    TODO("Not yet implemented")
                 }
 
             })
@@ -236,12 +239,27 @@ class NutrientDetailFragment(
 
     private fun initListener() {
         imgOpenChart.setOnClickListener {
-            layoutChart.animate().translationY(0F).duration = 800
+            actionSheets(sheetChartNutrient)
         }
 
         imgClose.setOnClickListener {
-            layoutChart.animate().translationY(3000F).duration = 800
+            actionSheets(sheetChartNutrient)
         }
+
+        sheetChartNutrient.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                viewBackground.animate()
+                    .alpha(slideOffset)
+                    .setDuration(0)
+                    .start()
+
+                viewBackground.isClickable = slideOffset == 1f
+            }
+        })
     }
 
     private fun generateCenterSpannableText(): SpannableString? {
@@ -252,8 +270,16 @@ class NutrientDetailFragment(
         s.setSpan(StyleSpan(Typeface.NORMAL), 7, s.length - 8, 0)
         s.setSpan(ForegroundColorSpan(Color.GRAY), 7, s.length - 8, 0)
         s.setSpan(RelativeSizeSpan(.8f), 7, s.length - 8, 0)
-        s.setSpan(ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length - 8, s.length, 0)
+        s.setSpan(ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length - 10, s.length, 0)
         return s
+    }
+
+    private fun actionSheets(bottomSheet: BottomSheetBehavior<LinearLayout>) {
+        if (bottomSheet.state == BottomSheetBehavior.STATE_EXPANDED) {
+            bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
+        } else {
+            bottomSheet.state = BottomSheetBehavior.STATE_EXPANDED
+        }
     }
 
     companion object {
