@@ -9,7 +9,7 @@ val storageModule = module {
 
     fun buildRoomDB(context: Context) = DatabaseBuilder().buildRoomDB(context)
 
-    fun provideHistoryDao(appDatabase: AppDatabase) = appDatabase.historyDao
+    fun provideHistoryDao(appDatabase: AppDatabase) = appDatabase.recipeDao
 
     single { buildRoomDB(get()) }
     single { provideHistoryDao(get()) }

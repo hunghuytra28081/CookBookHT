@@ -4,6 +4,7 @@ import com.example.cookbookht.ui.detail.RecipeDetailViewModel
 import com.example.cookbookht.ui.detailContent.detailIngredient.IngredientDetailViewModel
 import com.example.cookbookht.ui.detailContent.detailNutrient.NutrientDetailViewModel
 import com.example.cookbookht.ui.detailContent.detailStep.StepDetailViewModel
+import com.example.cookbookht.ui.favorite.FavoriteViewModel
 import com.example.cookbookht.ui.home.HomeViewModel
 import com.example.cookbookht.ui.search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -16,4 +17,5 @@ val viewModelModule = module {
     viewModel { NutrientDetailViewModel(get()) }
     viewModel { StepDetailViewModel(get()) }
     viewModel { SearchViewModel(get()) }
+    viewModel { FavoriteViewModel(get()) }
 }

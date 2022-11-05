@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
-import com.example.cookbookht.binding.onRefresh
 import com.example.cookbookht.data.model.Recipe
-import com.example.cookbookht.data.repository.source.local.History
+import com.example.cookbookht.data.repository.source.local.entities.History
 import com.example.cookbookht.databinding.FragmentSearchBinding
 import com.example.cookbookht.ui.home.HomeAdapter
 import com.example.cookbookht.utils.Constant
@@ -86,6 +86,8 @@ class SearchFragment : Fragment() {
                     binding.swipeRefresh.isRefreshing = false
                 }
             }
+
+            binding.layoutEmpty.isVisible = it.data?.value.isNullOrEmpty()
         }
 
         searchViewModel.getAllHistory()

@@ -1,4 +1,4 @@
-package com.example.cookbookht.data.repository.source.local
+package com.example.cookbookht.data.repository.source.local.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

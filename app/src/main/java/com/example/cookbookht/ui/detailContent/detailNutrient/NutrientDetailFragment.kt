@@ -111,6 +111,8 @@ class NutrientDetailFragment(
             chartNutrient.setCenterTextTypeface(tfLight)
             chartNutrient.centerText = generateCenterSpannableText()
 
+            chartNutrient.setExtraOffsets(20f, 0f, 20f, 0f)
+
             chartNutrient.isDrawHoleEnabled = true
             chartNutrient.setHoleColor(Color.WHITE)
 
@@ -139,11 +141,9 @@ class NutrientDetailFragment(
             // add a selection listener
             chartNutrient.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
                 override fun onValueSelected(e: Entry?, h: Highlight?) {
-                    TODO("Not yet implemented")
                 }
 
                 override fun onNothingSelected() {
-                    TODO("Not yet implemented")
                 }
 
             })
@@ -156,15 +156,13 @@ class NutrientDetailFragment(
                 horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
                 orientation = Legend.LegendOrientation.VERTICAL
                 setDrawInside(false)
-                xEntrySpace = 7f
-                yEntrySpace = 0f
-                yOffset = 0f
+                isEnabled = false
             }
 
             // entry label styling
 
             // entry label styling
-            chartNutrient.setEntryLabelColor(Color.WHITE)
+            chartNutrient.setEntryLabelColor(Color.BLACK)
             chartNutrient.setEntryLabelTypeface(tfRegular)
             chartNutrient.setEntryLabelTextSize(12f)
         }
@@ -173,13 +171,15 @@ class NutrientDetailFragment(
     private fun setDataChart(listData: MutableList<Nutrient>) {
         val entries = ArrayList<PieEntry>()
         for (i in listData) {
-            entries.add(
-                PieEntry(
-                    nutrientToGam(i.unit.toString(), i.amount ?: 0.0),
-                    i.name,
-                    resources.getDrawable(R.drawable.star)
+            if (nutrientToGam(i.unit.toString(), i.amount ?: 0.0) > 2F) {
+                entries.add(
+                    PieEntry(
+                        nutrientToGam(i.unit.toString(), i.amount ?: 0.0),
+                        i.name,
+                        resources.getDrawable(R.drawable.star)
+                    )
                 )
-            )
+            }
         }
 
         val dataSet = PieDataSet(entries, "Election Results")
@@ -211,10 +211,20 @@ class NutrientDetailFragment(
         //dataSet.setSelectionShift(0f);
 
         //dataSet.setSelectionShift(0f);
+        dataSet.valueLinePart1OffsetPercentage = 80f
+        dataSet.valueLinePart1Length = 0.2f
+        dataSet.valueLinePart2Length = 0.4f
+
+        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+
+        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        dataSet.yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+
+        //dataSet.setSelectionShift(0f);
         val data = PieData(dataSet)
         data.setValueFormatter(PercentFormatter())
         data.setValueTextSize(11f)
-        data.setValueTextColor(Color.WHITE)
+        data.setValueTextColor(Color.BLACK)
         data.setValueTypeface(tfLight)
         chartNutrient.data = data
 
@@ -223,9 +233,9 @@ class NutrientDetailFragment(
         // undo all highlights
         chartNutrient.highlightValues(null)
 
-        for (set in chartNutrient.data.dataSets) set.setDrawValues(false)
+//        for (set in chartNutrient.data.dataSets) set.setDrawValues(false)
 
-        chartNutrient.setDrawEntryLabels(false)
+//        chartNutrient.setDrawEntryLabels(false)
 
         chartNutrient.invalidate()
     }
@@ -235,13 +245,13 @@ class NutrientDetailFragment(
     }
 
     private fun initListener() {
-        imgOpenChart.setOnClickListener {
-            layoutChart.animate().translationY(0F).duration = 500
-        }
-
-        imgClose.setOnClickListener {
-            layoutChart.animate().translationY(3000F).duration = 500
-        }
+//        imgOpenChart.setOnClickListener {
+//            layoutChart.animate().translationY(0F).duration = 500
+//        }
+//
+//        imgClose.setOnClickListener {
+//            layoutChart.animate().translationY(3000F).duration = 500
+//        }
     }
 
     private fun generateCenterSpannableText(): SpannableString? {

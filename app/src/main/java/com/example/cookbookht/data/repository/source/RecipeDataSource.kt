@@ -3,8 +3,8 @@ package com.example.cookbookht.data.repository.source
 import com.example.cookbookht.data.model.RecipeDetail
 import com.example.cookbookht.data.model.RecipeResponse
 import com.example.cookbookht.data.model.SearchRecipeResponse
-import com.example.cookbookht.data.repository.source.local.History
-import retrofit2.Response
+import com.example.cookbookht.data.repository.source.local.entities.Favorite
+import com.example.cookbookht.data.repository.source.local.entities.History
 
 interface RecipeDataSource {
 
@@ -25,5 +25,13 @@ interface RecipeDataSource {
         suspend fun deleteHistory(name: String)
 
         fun isExistHistory(name: String)
+
+        suspend fun getAllFavorite() : List<Favorite>
+
+        suspend fun insertFavorite(item: Favorite)
+
+        suspend fun deleteFavorite(favorite: Favorite)
+
+        suspend fun alreadyFavorite(id: Int?) : Favorite
     }
 }

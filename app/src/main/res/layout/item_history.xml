@@ -5,7 +5,7 @@
 
         <variable
             name="history"
-            type="com.example.cookbookht.data.repository.source.local.History" />
+            type="com.example.cookbookht.data.repository.source.local.entities.History" />
     </data>
 
 <androidx.appcompat.widget.LinearLayoutCompat

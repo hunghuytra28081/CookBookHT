@@ -27,4 +27,9 @@
 
     <string name="slide_3_title">Decorating</string>
     <string name="slide_3_desc">Decorating food and interior design helps to impress others.</string>
+    <string name="recipe_empty">This recipe is empty</string>
+    <string name="check_late">Check another one just enjoy the moment!</string>
+    <string name="please_try_something_another_word">Please try something another word!</string>
+    <string name="no_recipe_is_favorite">No recipe is Favorite</string>
+    <string name="add_some_of_your_favorite_recipe">Add some of your favorite recipe!</string>
 </resources>

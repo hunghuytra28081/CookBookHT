@@ -1,5 +1,7 @@
 package com.example.cookbookht.extension.chart
 
+import com.example.cookbookht.data.model.Nutrient
+
 fun nutrientToGam(unit: String, amount: Double): Float {
     var gam = 0.0
     when (unit) {
@@ -12,12 +14,19 @@ fun nutrientToGam(unit: String, amount: Double): Float {
         "IU" -> {
             gam = amount / 30000000
         }
-//        "kcal" -> {
-//            gam = amount * 0.033
-//        }
+        "g" -> {
+            gam = amount
+        }
         else -> {
             gam = 0.0
         }
     }
     return gam.toFloat()
 }
+
+//fun listHighestValue(listData: MutableList<Nutrient>){
+//    if (listData.size > 4){
+//
+//    }
+//    else
+//}

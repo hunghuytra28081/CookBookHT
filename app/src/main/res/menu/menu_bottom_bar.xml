@@ -14,7 +14,7 @@
         app:cnb_iconColor="@color/color_purple" />
     <item
         android:id="@+id/favoriteItem"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_favorite_home"
         android:title="@string/favorite"
         app:cnb_iconColor="@color/color_purple" />
 </menu>

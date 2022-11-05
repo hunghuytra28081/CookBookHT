@@ -1,17 +1,13 @@
 package com.example.cookbookht.ui.search
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cookbookht.R
-import com.example.cookbookht.data.repository.source.local.History
+import com.example.cookbookht.data.repository.source.local.entities.History
 import com.example.cookbookht.databinding.ItemHistoryBinding
-import com.example.cookbookht.utils.BindingDataRecyclerView
 
 class HistoryAdapter(
     private val context: Context,

@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
@@ -120,6 +121,8 @@ class HomeFragment : Fragment() {
                     binding.swipeRefresh.isRefreshing = false
                 }
             }
+
+            binding.layoutEmpty.isVisible = it.data?.value.isNullOrEmpty()
         }
     }
 

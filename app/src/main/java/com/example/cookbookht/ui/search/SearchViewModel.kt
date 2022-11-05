@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.repository.RecipeRepository
-import com.example.cookbookht.data.repository.source.local.History
+import com.example.cookbookht.data.repository.source.local.entities.History
 import com.example.cookbookht.extension.plusAssign
 import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.LoadMoreRecyclerViewListener
