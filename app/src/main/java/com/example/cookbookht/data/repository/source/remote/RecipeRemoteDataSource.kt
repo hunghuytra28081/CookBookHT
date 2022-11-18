@@ -1,5 +1,6 @@
 package com.example.cookbookht.data.repository.source.remote
 
+import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.repository.source.RecipeDataSource
 import com.example.cookbookht.data.repository.source.remote.api.APIService
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,11 @@ class RecipeRemoteDataSource(private val apiService: APIService) : RecipeDataSou
         apiService.getRecipeDetail(id)
     }
 
-    override suspend fun searchRecipe(keyword: String, number: Int) = withContext(Dispatchers.IO){
+    override suspend fun searchRecipe(keyword: String, number: Int) = withContext(Dispatchers.IO) {
         apiService.searchRecipe(keyword, number)
     }
+
+    override suspend fun searchIngredient(keyword: String, number: Int) = withContext(Dispatchers.IO) {
+            apiService.searchIngredient(keyword, number)
+        }
 }

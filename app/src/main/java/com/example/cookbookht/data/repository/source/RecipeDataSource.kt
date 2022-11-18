@@ -1,5 +1,6 @@
 package com.example.cookbookht.data.repository.source
 
+import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.model.RecipeDetail
 import com.example.cookbookht.data.model.RecipeResponse
 import com.example.cookbookht.data.model.SearchRecipeResponse
@@ -15,6 +16,8 @@ interface RecipeDataSource {
         suspend fun getRecipeDetail(id: Int?): RecipeDetail
 
         suspend fun searchRecipe (keyword: String, number: Int): SearchRecipeResponse
+
+        suspend fun searchIngredient (keyword: String, number: Int): MutableList<Recipe>
     }
 
     interface Local{

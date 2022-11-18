@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:gravity="center"
-    android:translationZ="@dimen/_4sdp"
+    android:translationZ="@dimen/_6sdp"
     android:visibility="visible"
     tools:visibility="gone"
     app:layout_constraintBottom_toBottomOf="parent"

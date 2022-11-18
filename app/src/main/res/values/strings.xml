@@ -32,4 +32,6 @@
     <string name="please_try_something_another_word">Please try something another word!</string>
     <string name="no_recipe_is_favorite">No recipe is Favorite</string>
     <string name="add_some_of_your_favorite_recipe">Add some of your favorite recipe!</string>
+    <string name="try_another_some_ingredient">Try another some Ingredient!</string>
+    <string name="not_found_this_ingredient">Not found this Ingredient</string>
 </resources>
