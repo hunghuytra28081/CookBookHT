@@ -1,5 +1,6 @@
 package com.example.cookbookht.data.repository.source.remote.api
 
+import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.model.RecipeDetail
 import com.example.cookbookht.data.model.RecipeResponse
 import com.example.cookbookht.data.model.SearchRecipeResponse
@@ -25,4 +26,11 @@ interface APIService {
         @Query("query") keyword: String,
         @Query("number") number: Int,
     ): SearchRecipeResponse
+
+    //https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=cf90ee8d96ad45a68cb4c292a2aabdfa
+    @GET("findByIngredients")
+    suspend fun searchIngredient(
+        @Query("ingredients") keyword: String,
+        @Query("number") number: Int,
+    ): MutableList<Recipe>
 }

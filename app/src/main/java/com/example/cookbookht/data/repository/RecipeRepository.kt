@@ -13,6 +13,8 @@ class RecipeRepository(
 
     suspend fun searchRecipe(keyword: String, number: Int) = remote.searchRecipe(keyword, number)
 
+    suspend fun searchIngredient(keyword: String, number: Int) = remote.searchIngredient(keyword, number)
+
     suspend fun getAllHistory() = local.getAllHistory()
 
     suspend fun insertHistory(item: History) = local.insertHistory(item)

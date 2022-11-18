@@ -42,22 +42,29 @@
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/flexLayoutHistory"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_62sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
+            android:maxHeight="@dimen/_62sdp"
             app:maxLine="2"
             app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewHistory"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/_18sdp"
-                android:nestedScrollingEnabled="false"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
-                bind:adapter="@{historyAdapter}"
-                tools:listitem="@layout/item_history" />
-        </com.google.android.flexbox.FlexboxLayout>
+                android:layout_height="match_parent">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHeight_max="@dimen/_62sdp"
+                    android:paddingHorizontal="@dimen/_18sdp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                    bind:adapter="@{historyAdapter}"
+                    tools:listitem="@layout/item_history" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.flexbox.FlexboxLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
