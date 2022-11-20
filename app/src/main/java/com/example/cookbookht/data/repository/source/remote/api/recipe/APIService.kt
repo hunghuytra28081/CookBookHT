@@ -1,4 +1,4 @@
-package com.example.cookbookht.data.repository.source.remote.api
+package com.example.cookbookht.data.repository.source.remote.api.recipe
 
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.model.RecipeDetail
@@ -10,6 +10,7 @@ import retrofit2.http.Query
 
 interface APIService {
 
+    //api.spoonacular.com/recipes/random?number=20&apiKey=cf90ee8d96ad45a68cb4c292a2aabdfa
     @GET("random")
     suspend fun getRecipe(@Query("number") number: Int): RecipeResponse
 

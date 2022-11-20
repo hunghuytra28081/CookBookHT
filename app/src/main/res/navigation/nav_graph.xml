@@ -72,6 +72,11 @@
         <argument
             android:name="recipeDetail"
             app:argType="com.example.cookbookht.data.model.RecipeDetail" />
+        <action
+            android:id="@+id/action_ingredientDetailFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:popUpTo="@+id/mainFrameLayout"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"

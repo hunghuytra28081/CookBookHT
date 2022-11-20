@@ -1,10 +1,9 @@
 <resources>
-    <string name="app_name">HT-Cook</string>
+    <string name="app_name" translatable="false">HT-Cook</string>
     <string name="app_logo_text"><font color="#E6000000">HT</font><font color="#E647408F"><b>Cook</b></font></string>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="favorite">Favorite</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="slogan">Happiness in every meal</string>
     <string name="recipe">Recipe</string>
     <string name="text_loading">Loading…</string>
@@ -34,4 +33,27 @@
     <string name="add_some_of_your_favorite_recipe">Add some of your favorite recipe!</string>
     <string name="try_another_some_ingredient">Try another some Ingredient!</string>
     <string name="not_found_this_ingredient">Not found this Ingredient</string>
+
+    <string name="cancel">Cancel</string>
+        <string name="is_vietnamese">Language is Vietnamese</string>
+        <string name="is_english">Language is English</string>
+
+<!--    &lt;!&ndash;untranslatable&ndash;&gt;-->
+<!--    <string name="language_english" translatable="false">English</string>-->
+<!--    <string name="language_vietnamese" translatable="false">Tiếng Việt</string>-->
+
+<!--    <string-array name="language_names">-->
+<!--        <item>@string/language_english</item>-->
+<!--        <item>@string/language_vietnamese</item>-->
+<!--    </string-array>-->
+
+<!--    <string name="language_english_code" translatable="false">en</string>-->
+<!--    <string name="language_vietnamese_code" translatable="false">vi</string>-->
+    <string name="vietnamese">Vietnamese</string>
+    <string name="english">English</string>
+
+<!--    <string-array name="language_codes">-->
+<!--        <item>@string/language_english_code</item>-->
+<!--        <item>@string/language_vietnamese_code</item>-->
+<!--    </string-array>-->
 </resources>

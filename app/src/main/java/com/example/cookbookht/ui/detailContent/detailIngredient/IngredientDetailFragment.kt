@@ -3,12 +3,16 @@ package com.example.cookbookht.ui.detailContent.detailIngredient
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.cookbookht.R
 import com.example.cookbookht.binding.loadImage
 import com.example.cookbookht.data.model.Ingredient
 import com.example.cookbookht.data.model.Recipe
@@ -61,6 +65,7 @@ class IngredientDetailFragment(
         with(ingredientViewModel) {
             fetchIngredientDetail(recipeDetailId)
             ingredientDetailLiveData.observe(viewLifecycleOwner) {
+                Log.d("Main12345", "registerObserver: ${it.data?.value?.size}")
                 when (it.status) {
                     Status.LOADING -> {
                         binding.progressLayout.toVisible()
@@ -105,7 +110,7 @@ class IngredientDetailFragment(
         binding.imageIngredient.loadImage(Constant.BASE_URL_IMAGE_INGREDIENT + ingredient.image)
         titleIngredient.text = ingredient.name
 
-        val textSearch = ingredient.name?.filter { !it.isWhitespace() }
+        val textSearch = ingredient.name?.replace(" ","%2C")
         textSearch?.let {
             ingredientViewModel.fetchSearchIngredient(it)
         }
@@ -113,7 +118,9 @@ class IngredientDetailFragment(
     }
 
     private fun onClickItemSearchIngredient(recipe: Recipe) {
-
+        val bundle = bundleOf("recipe" to recipe.id)
+        findNavController().popBackStack()
+        findNavController().navigate(R.id.detailFragment, bundle)
     }
 
     companion object {

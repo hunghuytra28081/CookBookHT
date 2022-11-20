@@ -1,6 +1,6 @@
 package com.example.cookbookht.module
 
-import com.example.cookbookht.data.repository.source.remote.api.APIService
+import com.example.cookbookht.data.repository.source.remote.api.recipe.APIService
 import com.example.cookbookht.data.repository.source.remote.api.RetrofitClient
 import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.Constant.BASE_URL

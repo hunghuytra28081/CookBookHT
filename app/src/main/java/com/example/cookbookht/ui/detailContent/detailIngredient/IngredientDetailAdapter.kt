@@ -3,6 +3,7 @@ package com.example.cookbookht.ui.detailContent.detailIngredient
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookbookht.binding.loadImage

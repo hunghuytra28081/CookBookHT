@@ -63,7 +63,7 @@
                         android:id="@+id/imageIngredient"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <RelativeLayout
@@ -86,7 +86,7 @@
                         android:layout_marginEnd="@dimen/_8sdp"
                         android:layout_marginBottom="@dimen/_8sdp"
                         android:ellipsize="end"
-                        android:maxLength="20"
+                        android:maxLength="16"
                         android:paddingStart="@dimen/_4sdp"
                         android:text="Apple"
                         android:textColor="@color/color_black_dark"
@@ -100,9 +100,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
                 app:layout_constraintBottom_toTopOf="@+id/closeSearchIngredient"
+                app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
                 bind:adapter="@{searchIngredientAdapter}"
                 bind:data="@{ingredientViewModel.searchIngredient}"
                 bind:isLoad="@{ingredientViewModel.isLoad}"
@@ -113,50 +114,51 @@
                 android:id="@+id/layoutEmptySearchIngredient"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
-                app:layout_constraintBottom_toTopOf="@+id/closeSearchIngredient"
+                android:background="@color/color_white"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/_58sdp"
                 android:visibility="gone"
-                android:background="@color/color_white">
+                app:layout_constraintBottom_toTopOf="@+id/closeSearchIngredient"
+                app:layout_constraintTop_toBottomOf="@+id/layoutTitle">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/_86sdp"
                     android:layout_height="@dimen/_86sdp"
-                    android:src="@drawable/empty"/>
+                    android:src="@drawable/empty" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/not_found_this_ingredient"
-                    android:textSize="@dimen/_13sdp"
                     android:layout_marginHorizontal="@dimen/_22sdp"
-                    android:textColor="@color/black_grey_text"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:textStyle="bold"/>
+                    android:text="@string/not_found_this_ingredient"
+                    android:textColor="@color/black_grey_text"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/try_another_some_ingredient"
-                    android:textSize="@dimen/_11sdp"
                     android:layout_marginHorizontal="@dimen/_22sdp"
                     android:layout_marginTop="@dimen/_4sdp"
-                    android:textColor="#7D7F86" />
+                    android:text="@string/try_another_some_ingredient"
+                    android:textColor="#7D7F86"
+                    android:textSize="@dimen/_11sdp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/closeSearchIngredient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:paddingTop="@dimen/_8sdp"
                 android:paddingHorizontal="@dimen/_6sdp"
                 android:paddingVertical="@dimen/_6sdp"
-                android:src="@drawable/ic_close"/>
+                android:paddingTop="@dimen/_8sdp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <include
                 android:id="@+id/progressLayoutContent"
                 layout="@layout/loader_view" />

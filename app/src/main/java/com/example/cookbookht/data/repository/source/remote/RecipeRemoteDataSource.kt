@@ -1,8 +1,7 @@
 package com.example.cookbookht.data.repository.source.remote
 
-import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.repository.source.RecipeDataSource
-import com.example.cookbookht.data.repository.source.remote.api.APIService
+import com.example.cookbookht.data.repository.source.remote.api.recipe.APIService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

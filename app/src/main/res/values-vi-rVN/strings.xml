@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_logo_text"><font color="#E6000000">HT</font><font color="#E647408F"><b>Cook</b></font></string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="slogan">Hạnh phúc trong từng bữa ăn</string>
+    <string name="recipe">Công Thức</string>
+    <string name="text_loading">Đang tải…</string>
+    <string name="likes">Thích</string>
+    <string name="count_zero">0</string>
+    <string name="ingredient">Nguyên Liệu</string>
+    <string name="steps">Công Thức</string>
+    <string name="back_again">Nhấn Quay lại lần nữa để thoát</string>
+    <string name="minutes">Phút</string>
+    <string name="let_s_cook">Nấu Thôi!</string>
+    <string name="next">Tiếp</string>
+    <string name="skip">Bỏ Qua</string>
+    <string name="start">Hiểu Rồi</string>
+    <string name="slide_1_title">Công thức nấu ăn</string>
+    <string name="slide_1_desc">Luôn cập nhật các công thức nấu ăn ngon từ nhiều nhà hàng trên thế giới.</string>
+    <string name="slide_2_title">Lời Khuyên &amp; Mẹo</string>
+    <string name="slide_2_desc">Mẹo vặt cuộc sống và những lời khuyên hữu ích giúp bạn có nhiều kinh nghiệm vào bếp.</string>
+    <string name="slide_3_title">Trang trí</string>
+    <string name="slide_3_desc">Trang trí món ăn và thiết kế nội thất giúp gây ấn tượng với moin người.</string>
+    <string name="recipe_empty">Công thức này trống</string>
+    <string name="check_late">Xem công thức vào thời điểm khác</string>
+    <string name="please_try_something_another_word">Hãy thử tìm kiếm món ăn khác.</string>
+    <string name="no_recipe_is_favorite">Danh sách yêu thích trống</string>
+    <string name="add_some_of_your_favorite_recipe">Thêm vài món ăn vào mục ưa thích của bạn!</string>
+    <string name="try_another_some_ingredient">Thử vài Nguyên liệu khác</string>
+    <string name="not_found_this_ingredient">Không tìm thấy Nguyên liệu này</string>
+
+    <string name="cancel">Hủy</string>
+    <string name="is_vietnamese">Ngôn ngữ đang là Tiếng Việt</string>
+    <string name="is_english">Ngôn ngữ đang là tiếng Anh</string>
+
+    <string name="vietnamese">Tiếng Việt</string>
+    <string name="english">Tiếng Anh</string>
+
+<!--    &lt;!&ndash;change language&ndash;&gt;-->
+<!--    <string name="change_language_title">Ngôn Ngữ</string>-->
+</resources>

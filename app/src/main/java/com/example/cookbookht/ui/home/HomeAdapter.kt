@@ -2,17 +2,24 @@ package com.example.cookbookht.ui.home
 
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cookbookht.utils.BindingDataRecyclerView
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.databinding.ItemLoadMoreBinding
 import com.example.cookbookht.databinding.ItemRecipeHomeBinding
+import com.example.cookbookht.extension.translateToVi
+import com.example.cookbookht.utils.BindingDataRecyclerView
+import kotlinx.coroutines.CoroutineScope
 
-class HomeAdapter(private val onItemClick: (Recipe) -> Unit) :
+class HomeAdapter(
+    private val scope: CoroutineScope,
+    private val onItemClick: (Recipe) -> Unit
+) :
     ListAdapter<Recipe, RecyclerView.ViewHolder>(RecipeDiffUtilCallBack()),
     BindingDataRecyclerView<MutableList<Recipe>> {
 
@@ -30,7 +37,7 @@ class HomeAdapter(private val onItemClick: (Recipe) -> Unit) :
                 parent,
                 false
             )
-            RecipeViewHolder(binding, onItemClick)
+            RecipeViewHolder(binding, scope, onItemClick)
         }
     }
 
@@ -57,12 +64,15 @@ class HomeAdapter(private val onItemClick: (Recipe) -> Unit) :
 
     class RecipeViewHolder(
         private val binding: ItemRecipeHomeBinding,
+        private val scope: CoroutineScope,
         val onItemClick: (Recipe) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(recipe: Recipe) {
             binding.apply {
                 this.recipe = recipe
+//                titleHomeTextView.text = scope.translateToVi(recipe.title)
+//                titleHomeTextView.text = recipe.title?.translateToVi()
                 executePendingBindings()
                 root.setOnClickListener {
                     onItemClick(recipe)

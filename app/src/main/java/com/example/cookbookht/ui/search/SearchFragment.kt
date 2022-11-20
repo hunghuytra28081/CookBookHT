@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
 import com.example.cookbookht.data.model.Recipe
@@ -25,7 +26,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchViewModel: SearchViewModel by viewModel()
-    private val searchAdapter = HomeAdapter(this::onClickItemHome)
+    private val searchAdapter = HomeAdapter(lifecycleScope, this::onClickItemHome)
     private val historyAdapter by lazy {
         HistoryAdapter(requireContext()) {
             onClickItemHistory(it)

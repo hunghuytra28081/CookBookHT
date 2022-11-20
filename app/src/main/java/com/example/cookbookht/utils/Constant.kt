@@ -6,6 +6,9 @@ object Constant {
     const val API_KEY = BuildConfig.API_KEY
     const val API_KEY_WORD = "apiKey"
     const val BASE_URL = "https://api.spoonacular.com/recipes/"
+    const val BASE_URL_TRANSLATE = "https://translation.googleapis.com/"
+    const val API_KEY_TRANSLATE = "AIzaSyDUfVcopSoOjEwpy9Am1jWiqkbi1AEre8I"
+    const val API_KEY_WORD_TRANSLATE = "key"
     const val DEFAULT_NUMBER_RECIPE = 20
     const val DEFAULT_STRING = ""
     const val BASE_URL_IMAGE = "https://spoonacular.com/recipeImages/"

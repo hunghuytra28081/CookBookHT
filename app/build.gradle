@@ -9,6 +9,7 @@ plugins {
 android {
     compileSdkVersion 32
     buildToolsVersion "30.0.3"
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.example.cookbookht"
@@ -126,4 +127,7 @@ dependencies {
     implementation("com.tbuonomo:dotsindicator:4.3")
 
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+    // Logger OkHttp
+    implementation("com.squareup.okhttp3:logging-interceptor:3.12.8")
 }

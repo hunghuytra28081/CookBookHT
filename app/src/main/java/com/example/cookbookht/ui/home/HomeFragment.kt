@@ -1,5 +1,7 @@
 package com.example.cookbookht.ui.home
 
+import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -8,20 +10,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.databinding.FragmentHomeBinding
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
+import com.example.cookbookht.ui.sheetDialog.SheetSettingLanguage
+import com.example.cookbookht.ui.slide.SlideActivity
 import com.example.cookbookht.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Exception
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -30,7 +37,7 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel by viewModel<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
-    private val homeAdapter = HomeAdapter(this::onClickItemHome)
+    private val homeAdapter = HomeAdapter(lifecycleScope,this::onClickItemHome)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +52,7 @@ class HomeFragment : Fragment() {
         initBinding()
         initSliderView()
         registerObserver()
+        initListener()
     }
 
     private fun initSliderView() {
@@ -76,19 +84,19 @@ class HomeFragment : Fragment() {
             unselected.alpha = 0.4f
             unselected
         }
-        indicator.updateIndicatorCounts(sliderViewPager.indicatorCount)
-        try {
-            sliderViewPager.onIndicatorProgress = { selectingPosition, progress ->
-                indicator.onPageScrolled(selectingPosition, progress)
-            }
-        }catch (e: Exception){
-
-        }
-        indicator.updateIndicatorCounts(sliderViewPager.indicatorCount)
+//        indicator.updateIndicatorCounts(sliderViewPager.indicatorCount)
+//        try {
+//            sliderViewPager.onIndicatorProgress = { selectingPosition, progress ->
+//                indicator.onPageScrolled(selectingPosition, progress)
+//            }
+//        }catch (e: Exception){
+//
+//        }
+//        indicator.updateIndicatorCounts(sliderViewPager.indicatorCount)
     }
 
     private fun initSliderData() {
-        if (dataSlide.isEmpty()){
+        if (dataSlide.isEmpty()) {
             dataSlide.apply {
                 ContextCompat.getDrawable(requireContext(), R.drawable.cookit)?.let { add(it) }
                 ContextCompat.getDrawable(requireContext(), R.drawable.suonkhotet)?.let { add(it) }
@@ -124,6 +132,48 @@ class HomeFragment : Fragment() {
 
             binding.layoutEmpty.isVisible = it.data?.value.isNullOrEmpty()
         }
+    }
+
+    private fun initListener() {
+        binding.settingLanguage.setOnClickListener {
+            SheetSettingLanguage {
+                when (it) {
+                    0 -> {
+                        if (Locale.getDefault().language != "vi"){
+                            changeLanguage("vi")
+                            activity?.finish()
+                        }else{
+                            Toast.makeText(requireContext(),resources.getString(R.string.is_english),Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    1 -> {
+                        if (Locale.getDefault().language == "vi"){
+                            changeLanguage("en")
+                            activity?.finish()
+                        }else{
+                            Toast.makeText(requireContext(),resources.getString(R.string.is_vietnamese),Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    else -> {
+                    }
+                }
+            }.show(childFragmentManager, null)
+        }
+    }
+
+    private fun changeLanguage(language: String) {
+        val locale = Locale(language)
+        val config = Configuration()
+        config.locale = locale
+
+        resources.updateConfiguration(
+            config,
+            resources.displayMetrics
+        )
+        val intent = Intent(requireContext(), SlideActivity::class.java)
+        startActivity(intent)
     }
 
     private fun onClickItemHome(recipe: Recipe) {

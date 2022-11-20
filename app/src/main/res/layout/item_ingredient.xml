@@ -36,6 +36,8 @@
             android:textColor="@color/color_black_dark"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLength="20"
             app:layout_constraintStart_toEndOf="@+id/imageIngredient"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewNext"
