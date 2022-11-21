@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.cookbookht.data.repository.source.remote.api.translate.RetrofitBuilder
 import com.example.cookbookht.extension.loadFromUrl
 import com.example.cookbookht.utils.BindingDataRecyclerView
+import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.LoadMoreRecyclerViewListener
 import com.example.cookbookht.utils.RefreshRecyclerViewListener
 import java.util.*
@@ -39,6 +41,23 @@ fun TextView.setTextHTML(html: String?) {
         else -> {
             Html.fromHtml(html)
         }
+    }
+}
+
+@BindingAdapter(value = ["bind:setTextTranslate"])
+fun TextView.setTextTranslate(data: String?) {
+    text = when (Locale.getDefault().language) {
+        "vi" -> {
+            data.let {
+                val response = RetrofitBuilder.apiService.getDataTranslate(
+                    it.toString(), Constant.API_KEY_TRANSLATE
+                )
+                response.let { response ->
+                    response.data?.translations?.joinToString { it.translatedText }
+                }
+            }
+        }
+        else -> data
     }
 }
 

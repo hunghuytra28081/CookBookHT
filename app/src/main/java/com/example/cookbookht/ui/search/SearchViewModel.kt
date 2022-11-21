@@ -44,8 +44,19 @@ class SearchViewModel(
     override fun onLoadData() {
         _isLoad.value = true
         Handler(Looper.getMainLooper()).postDelayed({
+            _isLoad.value = false
+//            currentNumber += Constant.DEFAULT_NUMBER_RECIPE
+            removeItemLoading()
             searchRecipe(keyword)
         }, Constant.DELAY_TIME)
+    }
+
+    private fun addItemLoad(recipe: MutableList<Recipe>) {
+        recipe.add(Recipe(null, "", ""))
+    }
+
+    private fun removeItemLoading() {
+        _recipes.apply { value?.size?.let { value?.removeAt(it - 1) } }
     }
 
     override fun onRefresh() {
@@ -66,9 +77,20 @@ class SearchViewModel(
     fun searchRecipe(keyword: String = Constant.DEFAULT_STRING) {
         viewModelScope.launch {
             try {
-                _recipes.plusAssign(
-                    repository.searchRecipe(keyword, currentNumber).recipes
-                )
+                repository.searchRecipe(keyword, currentNumber).let { recipe ->
+                    if (recipe.recipes.size == 0) {
+                        removeItemLoading()
+                        _isLoad.value = true
+                        return@launch
+                    } else if (recipe.recipes.size >= currentNumber) {
+                        addItemLoad(recipe.recipes)
+                    }
+                    _recipes.plusAssign(
+                        recipe.recipes
+                    )
+                    currentNumber += Constant.DEFAULT_NUMBER_RECIPE
+                    _isLoad.value = false
+                }
                 _resource.postValue(Resource.success(data = recipes))
                 _isLoad.value = false
             } catch (e: Exception) {

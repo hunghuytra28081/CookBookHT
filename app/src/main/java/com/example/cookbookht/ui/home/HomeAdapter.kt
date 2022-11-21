@@ -17,7 +17,6 @@ import com.example.cookbookht.utils.BindingDataRecyclerView
 import kotlinx.coroutines.CoroutineScope
 
 class HomeAdapter(
-    private val scope: CoroutineScope,
     private val onItemClick: (Recipe) -> Unit
 ) :
     ListAdapter<Recipe, RecyclerView.ViewHolder>(RecipeDiffUtilCallBack()),
@@ -37,7 +36,7 @@ class HomeAdapter(
                 parent,
                 false
             )
-            RecipeViewHolder(binding, scope, onItemClick)
+            RecipeViewHolder(binding, onItemClick)
         }
     }
 
@@ -64,7 +63,6 @@ class HomeAdapter(
 
     class RecipeViewHolder(
         private val binding: ItemRecipeHomeBinding,
-        private val scope: CoroutineScope,
         val onItemClick: (Recipe) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 

@@ -11,6 +11,7 @@ import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.repository.RecipeRepository
 import com.example.cookbookht.extension.plusAssign
 import com.example.cookbookht.utils.Constant
+import com.example.cookbookht.utils.Constant.DEFAULT_NUMBER_RECIPE
 import com.example.cookbookht.utils.LoadMoreRecyclerViewListener
 import com.example.cookbookht.utils.Resource
 import kotlinx.coroutines.launch
@@ -61,8 +62,17 @@ class IngredientDetailViewModel(
     fun fetchSearchIngredient(keyword: String = Constant.DEFAULT_STRING) {
         viewModelScope.launch {
             try {
-                recipeRepository.searchIngredient(keyword, currentNumber).let {
-                    _searchIngredient.plusAssign(it)
+                recipeRepository.searchIngredient(keyword, currentNumber).let { recipe ->
+                    if (recipe.size == 0) {
+                        removeItemLoading()
+                        _isLoad.value = true
+                        return@launch
+                    } else if (recipe.size >= currentNumber) {
+                        addItemLoad(recipe)
+                    }
+                    _searchIngredient.plusAssign(recipe)
+                    currentNumber += DEFAULT_NUMBER_RECIPE
+                    _isLoad.value = false
                 }
                 _resource.postValue(Resource.success(data = searchIngredient))
             } catch (e: Exception) {
@@ -73,23 +83,21 @@ class IngredientDetailViewModel(
 
     override fun onLoadData() {
         _isLoad.value = true
-        addLoading()
+//        addLoading()
         Handler(Looper.getMainLooper()).postDelayed({
-            removeItemLoading()
-            currentNumber += Constant.DEFAULT_NUMBER_RECIPE
-            searchIngredient.value?.let {
-                fetchSearchIngredient()
-            }
             _isLoad.value = false
+//            currentNumber += DEFAULT_NUMBER_RECIPE
+            removeItemLoading()
+            fetchSearchIngredient()
         }, Constant.DELAY_TIME)
     }
 
+    private fun addItemLoad(recipe: MutableList<Recipe>) {
+        recipe.add(Recipe(null, "", ""))
+    }
+
     private fun removeItemLoading() {
-        if (_isLoad.value == true) {
-            searchIngredient.value?.let {
-                it.removeAt(it.size - 1)
-            }
-        }
+        _searchIngredient.apply { value?.size?.let { value?.removeAt(it - 1) } }
     }
 
     private fun addLoading() {

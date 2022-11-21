@@ -26,7 +26,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchViewModel: SearchViewModel by viewModel()
-    private val searchAdapter = HomeAdapter(lifecycleScope, this::onClickItemHome)
+    private val searchAdapter = HomeAdapter(this::onClickItemHome)
     private val historyAdapter by lazy {
         HistoryAdapter(requireContext()) {
             onClickItemHistory(it)

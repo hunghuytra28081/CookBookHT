@@ -41,8 +41,17 @@ class HomeViewModel(private val recipeRepository: RecipeRepository) : ViewModel(
     private fun fetchRecipe() {
         viewModelScope.launch {
             try {
-                recipeRepository.getRecipe(currentNumber).let {
-                    _recipes.plusAssign(it.recipe)
+                recipeRepository.getRecipe(currentNumber).let { recipe ->
+                    if (recipe.recipe.size == 0) {
+                        removeItemLoading()
+                        _isLoad.value = true
+                        return@launch
+                    } else if (recipe.recipe.size >= currentNumber) {
+                        addItemLoad(recipe.recipe)
+                    }
+                    _recipes.plusAssign(recipe.recipe)
+                    currentNumber += DEFAULT_NUMBER_RECIPE
+                    _isLoad.value = false
                 }
                 _resource.postValue(Resource.success(data = recipe))
             } catch (e: Exception) {
@@ -53,14 +62,12 @@ class HomeViewModel(private val recipeRepository: RecipeRepository) : ViewModel(
 
     override fun onLoadData() {
         _isLoad.value = true
-        addLoading()
+//        addLoading()
         Handler(Looper.getMainLooper()).postDelayed({
-            removeItemLoading()
-            currentNumber += DEFAULT_NUMBER_RECIPE
-            recipe.value?.let {
-                fetchRecipe()
-            }
             _isLoad.value = false
+//            currentNumber += DEFAULT_NUMBER_RECIPE
+            removeItemLoading()
+            fetchRecipe()
         }, Constant.DELAY_TIME)
     }
 
@@ -69,11 +76,7 @@ class HomeViewModel(private val recipeRepository: RecipeRepository) : ViewModel(
     }
 
     private fun removeItemLoading() {
-        if (_isLoad.value == true) {
-            recipe.value?.let {
-                it.removeAt(it.size - 1)
-            }
-        }
+        _recipes.apply { value?.size?.let { value?.removeAt(it - 1) } }
     }
 
     private fun addLoading() {

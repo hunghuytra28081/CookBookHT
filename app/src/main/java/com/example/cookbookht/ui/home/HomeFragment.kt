@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel by viewModel<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
-    private val homeAdapter = HomeAdapter(lifecycleScope,this::onClickItemHome)
+    private val homeAdapter = HomeAdapter(this::onClickItemHome)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
