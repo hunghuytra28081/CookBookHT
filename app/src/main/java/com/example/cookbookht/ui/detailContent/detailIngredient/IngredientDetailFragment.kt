@@ -17,6 +17,7 @@ import com.example.cookbookht.binding.loadImage
 import com.example.cookbookht.data.model.Ingredient
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.databinding.FragmentIngredientDetailBinding
+import com.example.cookbookht.extension.clickWithDebounce
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
 import com.example.cookbookht.utils.Constant
@@ -103,6 +104,10 @@ class IngredientDetailFragment(
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.progressLayoutContent.toVisible()
             },500)
+        }
+
+        layoutSearchIngredient.clickWithDebounce {
+
         }
     }
 

@@ -29,8 +29,13 @@ class SplashActivity : AppCompatActivity() {
 
         if (prefs.isFistTime.get()){
             prefs.isLanguageVi.set("en")
-            changeLanguage("en")
             prefs.isFistTime.set(false)
+        }
+
+        if (prefs.isLanguageVi.get() == "vi"){
+            changeLanguage("vi")
+        }else{
+            changeLanguage("en")
         }
 
         Handler(Looper.getMainLooper()).postDelayed({

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_logo_text"><font color="#E6000000">HT</font><font color="#E647408F"><b>Cook</b></font></string>
-    <string name="home">Home</string>
-    <string name="search">Search</string>
-    <string name="favorite">Favorite</string>
+    <string name="home">Chính</string>
+    <string name="search">Tìm Kiếm</string>
+    <string name="favorite">Yêu Thích</string>
     <string name="slogan">Hạnh phúc trong từng bữa ăn</string>
     <string name="recipe">Công Thức</string>
     <string name="text_loading">Đang tải</string>
