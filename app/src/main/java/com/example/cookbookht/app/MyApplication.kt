@@ -18,7 +18,8 @@ class MyApplication : Application() {
                     storageModule,
                     viewModelModule,
                     repositoryModule,
-                    dataSourceModule
+                    dataSourceModule,
+                    appModule
                 )
             )
         }

@@ -16,4 +16,5 @@ object Constant {
     const val BASE_URL_IMAGE_INGREDIENT = "https://spoonacular.com/cdn/ingredients_100x100/"
     const val DELAY_TIME = 2000L
     const val DATABASE_NAME = "history_cook"
+    const val APP_PREFERENCE = "cookBookHT"
 }

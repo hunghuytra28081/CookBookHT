@@ -15,18 +15,21 @@ import com.example.cookbookht.R
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.data.repository.source.local.entities.History
 import com.example.cookbookht.databinding.FragmentSearchBinding
+import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.ui.home.HomeAdapter
 import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.Status
 import com.google.android.flexbox.*
 import kotlinx.android.synthetic.main.fragment_search.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
+    private val prefs: Preferences by inject()
     private val searchViewModel: SearchViewModel by viewModel()
-    private val searchAdapter = HomeAdapter(this::onClickItemHome)
+    private val searchAdapter = HomeAdapter(this::onClickItemHome, prefs, lifecycleScope)
     private val historyAdapter by lazy {
         HistoryAdapter(requireContext()) {
             onClickItemHistory(it)

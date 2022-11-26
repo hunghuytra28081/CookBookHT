@@ -1,7 +1,9 @@
 package com.example.cookbookht.extension
 
+import android.os.SystemClock
 import android.view.View
 import com.example.cookbookht.data.repository.source.remote.api.translate.RetrofitBuilder
+import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.utils.Constant.API_KEY_TRANSLATE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,10 +42,10 @@ fun <R> CoroutineScope.executeAsyncTask(
     onPostExecute(result)
 }
 
-fun CoroutineScope.translateToVi(data: String?): String {
+fun CoroutineScope.translateToVi(prefs : Preferences, data: String?): String {
     var value = ""
     this.executeAsyncTask(onPreExecute = {}, doInBackground = {
-        return@executeAsyncTask when (Locale.getDefault().language) {
+        return@executeAsyncTask when (prefs.isLanguageVi.get()) {
             "vi" -> {
                 data?.let {
                     val response = RetrofitBuilder.apiService.getDataTranslate(
@@ -62,22 +64,45 @@ fun CoroutineScope.translateToVi(data: String?): String {
     return value
 }
 
-fun String.translateToVi(): String? {
-    var value : String? = ""
-    when (Locale.getDefault().language) {
-            "vi" -> {
-                this?.let {
-                    val response = RetrofitBuilder.apiService.getDataTranslate(
-                        it, API_KEY_TRANSLATE
-                    )
-                   value =  response.let { response ->
-                        response.data?.translations?.joinToString { it.translatedText }
+fun CoroutineScope.translateToVie(prefs : Preferences, data: String?): String? {
+    var value: String? = ""
+    this.launch(Dispatchers.IO) {
+        try {
+            this.executeAsyncTask(onPreExecute = {}, doInBackground = {
+                return@executeAsyncTask when (prefs.isLanguageVi.get()) {
+                    "vi" -> {
+                        data?.let {
+                            val response = RetrofitBuilder.apiService.getDataTranslate(
+                                it, API_KEY_TRANSLATE
+                            )
+                            response.let { response ->
+                                response.data?.translations?.joinToString { it.translatedText }
+                            }
+                        }
                     }
+                    else -> data
                 }
-            }
-            else -> value = this
-        }
+            }, onPostExecute = {
+                value = it.toString()
+            })
 
+        }catch (e: Exception) {
+
+        }
+    }
     return value
 }
+
+fun View.clickWithDebounce(debounceTime: Long = 1200L, action: () -> Unit) {
+    this.setOnClickListener(object : View.OnClickListener {
+        private var lastClickTime: Long = 0
+        override fun onClick(v: View) {
+            if (SystemClock.elapsedRealtime() - lastClickTime < debounceTime) return
+            else action()
+            lastClickTime = SystemClock.elapsedRealtime()
+        }
+    })
+}
+
+
 

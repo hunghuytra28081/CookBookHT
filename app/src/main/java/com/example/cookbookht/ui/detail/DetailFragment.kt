@@ -12,6 +12,7 @@ import com.example.cookbookht.R
 import com.example.cookbookht.data.model.RecipeDetail
 import com.example.cookbookht.data.repository.source.local.entities.Favorite
 import com.example.cookbookht.databinding.FragmentDetailBinding
+import com.example.cookbookht.extension.clickWithDebounce
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
 import com.example.cookbookht.utils.Status
@@ -60,7 +61,7 @@ class DetailFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        buttonCook.setOnClickListener {
+        buttonCook.clickWithDebounce {
             val bundle = bundleOf("recipeDetail" to recipeId)
             findNavController().navigate(R.id.contentDetailFragment, bundle)
         }

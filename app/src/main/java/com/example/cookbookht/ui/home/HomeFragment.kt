@@ -20,12 +20,15 @@ import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
 import com.example.cookbookht.data.model.Recipe
 import com.example.cookbookht.databinding.FragmentHomeBinding
+import com.example.cookbookht.extension.clickWithDebounce
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
+import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.ui.sheetDialog.SheetSettingLanguage
 import com.example.cookbookht.ui.slide.SlideActivity
 import com.example.cookbookht.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Exception
 import java.util.*
@@ -35,9 +38,11 @@ class HomeFragment : Fragment() {
     private var dataSlide = mutableListOf<Drawable>()
     private lateinit var sliderAdapter: SliderAdapter
 
+    private val prefs: Preferences by inject()
+
     private val homeViewModel by viewModel<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
-    private val homeAdapter = HomeAdapter(this::onClickItemHome)
+    private val homeAdapter = HomeAdapter(this::onClickItemHome, prefs, lifecycleScope)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -135,24 +140,34 @@ class HomeFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.settingLanguage.setOnClickListener {
+        binding.settingLanguage.clickWithDebounce {
             SheetSettingLanguage {
                 when (it) {
                     0 -> {
-                        if (Locale.getDefault().language != "vi"){
+                        if (prefs.isLanguageVi.get() == "en") {
+                            prefs.isLanguageVi.set("vi")
                             changeLanguage("vi")
                             activity?.finish()
-                        }else{
-                            Toast.makeText(requireContext(),resources.getString(R.string.is_english),Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                resources.getString(R.string.is_vietnamese),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
                     1 -> {
-                        if (Locale.getDefault().language == "vi"){
+                        if (prefs.isLanguageVi.get() == "vi") {
+                            prefs.isLanguageVi.set("en")
                             changeLanguage("en")
                             activity?.finish()
-                        }else{
-                            Toast.makeText(requireContext(),resources.getString(R.string.is_vietnamese),Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                resources.getString(R.string.is_english),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
