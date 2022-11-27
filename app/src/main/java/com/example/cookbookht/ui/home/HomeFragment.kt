@@ -205,7 +205,6 @@ class HomeFragment : Fragment() {
             }.show(childFragmentManager, null)
         }
         binding.animateTab.onTabSelected = {
-            Log.d("Hung_bottom_bar", "Selected tab: " + it.title)
 
             when (it.title) {
                 resources.getString(R.string.random) -> {
@@ -213,15 +212,25 @@ class HomeFragment : Fragment() {
                     binding.layoutRandom.isVisible = true
                     binding.layoutFood.isVisible = false
                 }
-                resources.getString(R.string.foods) -> {
-                    searchViewModel.onRefreshSearch("food")
+                resources.getString(R.string.pizza) -> {
+                    searchViewModel.onRefreshSearch("pizza")
                     binding.layoutRandom.isVisible = false
                     binding.layoutFood.isVisible = true
 
                     swipeRefreshFood.setOnRefreshListener {
-                        searchViewModel.onRefreshSearch("food")
+                        searchViewModel.onRefreshSearch("pizza")
                     }
                 }
+                resources.getString(R.string.beef) -> {
+                    searchViewModel.onRefreshSearch("beef")
+                    binding.layoutRandom.isVisible = false
+                    binding.layoutFood.isVisible = true
+
+                    swipeRefreshFood.setOnRefreshListener {
+                        searchViewModel.onRefreshSearch("beef")
+                    }
+                }
+
                 resources.getString(R.string.drinks) -> {
                     searchViewModel.onRefreshSearch("drinks")
                     binding.layoutRandom.isVisible = false

@@ -91,6 +91,7 @@ class DetailFragment : Fragment() {
                     Status.SUCCESS -> {
                         binding.progressLayout.toGone()
                         it.data.run {
+
                             binding.recipeDetail = this
                             insertData(this)
                         }

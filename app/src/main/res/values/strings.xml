@@ -40,7 +40,10 @@
     <string name="vietnamese">Vietnamese</string>
     <string name="english">English</string>
     <string name="random">Random</string>
-    <string name="foods">Foods</string>
+    <string name="pizza" translatable="false">Pizza</string>
     <string name="drinks">Drinks</string>
+    <string name="beef">Beef</string>
+    <string name="this_recipe_no_steps">This recipe no Steps</string>
+    <string name="process_of_updating">This recipe is in the process of updating</string>
 
 </resources>

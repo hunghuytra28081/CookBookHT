@@ -51,7 +51,7 @@
             android:textColor="@color/color_grey_black"
             android:textSize="@dimen/_12sdp"
             android:textStyle="italic"
-            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

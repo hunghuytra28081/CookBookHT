@@ -73,7 +73,6 @@ class HomeAdapter(
             binding.apply {
                 this.recipe = recipe
 //                titleHomeTextView.text = scope.translateToVie(prefs, recipe.title)
-//                titleHomeTextView.text = recipe.title?.translateToVi()
                 executePendingBindings()
                 root.setOnClickListener {
                     onItemClick(recipe)

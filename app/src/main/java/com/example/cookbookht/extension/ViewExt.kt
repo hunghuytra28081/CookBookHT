@@ -42,7 +42,7 @@ fun <R> CoroutineScope.executeAsyncTask(
     onPostExecute(result)
 }
 
-fun CoroutineScope.translateToVi(prefs : Preferences, data: String?): String {
+fun CoroutineScope.translateToVi(prefs: Preferences, data: String?): String {
     var value = ""
     this.executeAsyncTask(onPreExecute = {}, doInBackground = {
         return@executeAsyncTask when (prefs.isLanguageVi.get()) {
@@ -64,31 +64,31 @@ fun CoroutineScope.translateToVi(prefs : Preferences, data: String?): String {
     return value
 }
 
-fun CoroutineScope.translateToVie(prefs : Preferences, data: String?): String? {
+fun CoroutineScope.translateToVie(prefs: Preferences, data: String?): String? {
     var value: String? = ""
     this.launch(Dispatchers.IO) {
         try {
-            this.executeAsyncTask(onPreExecute = {}, doInBackground = {
-                return@executeAsyncTask when (prefs.isLanguageVi.get()) {
-                    "vi" -> {
-                        data?.let {
-                            val response = RetrofitBuilder.apiService.getDataTranslate(
-                                it, API_KEY_TRANSLATE
-                            )
-                            response.let { response ->
-                                response.data?.translations?.joinToString { it.translatedText }
+            this.executeAsyncTask(
+                onPreExecute = {},
+                doInBackground = {
+                    return@executeAsyncTask when (prefs.isLanguageVi.get()) {
+                        "vi" -> {
+                            data?.let {
+                                val response = RetrofitBuilder.apiService.getDataTranslate(
+                                    it, API_KEY_TRANSLATE
+                                )
+                                response.let { response ->
+                                    response.data?.translations?.joinToString { it.translatedText }
+                                }
                             }
                         }
+                        else -> data
                     }
-                    else -> data
-                }
-            }, onPostExecute = {
-                value = it.toString()
-            })
-
-        }catch (e: Exception) {
-
-        }
+                },
+                onPostExecute = {
+                    value = it.toString()
+                })
+        } catch (e: Exception) { }
     }
     return value
 }

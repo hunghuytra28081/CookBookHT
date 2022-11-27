@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface APITranslate {
 
-    //https://translation.googleapis.com/language/translate/v2?q=table&source=en&target=vi&format=text&key=AIzaSyDUfVcopSoOjEwpy9Am1jWiqkbi1AEre8I
+    //translation.googleapis.com/language/translate/v2?q=table&source=en&target=vi&format=text&key=AIzaSyDUfVcopSoOjEwpy9Am1jWiqkbi1AEre8I
     @GET("/language/translate/v2")
     fun getDataTranslate(
         @Query("q") q: String,

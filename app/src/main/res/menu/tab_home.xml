@@ -4,9 +4,13 @@
         android:icon="@drawable/ic_random"
         android:title="@string/random" />
     <item
-        android:id="@+id/tab_food"
+        android:id="@+id/tab_pizza"
         android:icon="@drawable/ic_foods"
-        android:title="@string/foods" />
+        android:title="@string/pizza" />
+    <item
+        android:id="@+id/tab_beef"
+        android:icon="@drawable/ic_beef"
+        android:title="@string/beef" />
     <item
         android:id="@+id/tab_drink"
         android:icon="@drawable/ic_drinks"
