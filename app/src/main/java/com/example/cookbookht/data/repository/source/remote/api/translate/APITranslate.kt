@@ -15,5 +15,5 @@ interface APITranslate {
         @Query("target") target: String = "vi",
         @Query("format") format: String = "text",
         @Query("source") source: String = "en"
-    ): TranslateResponse
+    ): Call<TranslateResponse>
 }

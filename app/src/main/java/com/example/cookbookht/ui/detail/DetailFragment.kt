@@ -1,6 +1,7 @@
 package com.example.cookbookht.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,20 @@ import androidx.navigation.fragment.findNavController
 import com.example.cookbookht.R
 import com.example.cookbookht.data.model.RecipeDetail
 import com.example.cookbookht.data.repository.source.local.entities.Favorite
+import com.example.cookbookht.data.repository.source.remote.api.translate.RetrofitBuilder
 import com.example.cookbookht.databinding.FragmentDetailBinding
 import com.example.cookbookht.extension.clickWithDebounce
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
+import com.example.cookbookht.utils.Constant.API_KEY_TRANSLATE
 import com.example.cookbookht.utils.Status
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import retrofit2.await
 
 class DetailFragment : Fragment() {
 
@@ -90,7 +98,19 @@ class DetailFragment : Fragment() {
                     }
                     Status.SUCCESS -> {
                         binding.progressLayout.toGone()
-                        it.data.run {
+                        it.data?.run {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                try {
+                                    val response = RetrofitBuilder.apiService.getDataTranslate(summary ?: "", API_KEY_TRANSLATE).await()
+                                    Log.e("Main12345","Response: ${Gson().toJson(response)}")
+                                    binding.recipeDetail?.summary = response.data.translations.joinToString { it.translatedText }
+                                    binding.recipeDetail = binding.recipeDetail
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                    Log.d("Main12345", "Error: $e")
+                                }
+                            }
+
                             binding.recipeDetail = this
                             insertData(this)
                         }

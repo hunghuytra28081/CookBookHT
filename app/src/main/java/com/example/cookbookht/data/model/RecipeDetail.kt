@@ -25,7 +25,7 @@ data class RecipeDetail(
     val like: Int?,
     @SerializedName("summary")
     @Expose
-    val summary: String?,
+    var summary: String?,
     @SerializedName("extendedIngredients")
     @Expose
     val ingredient: MutableList<Ingredient>,

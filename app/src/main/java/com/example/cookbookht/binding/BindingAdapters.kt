@@ -47,16 +47,16 @@ fun TextView.setTextHTML(html: String?) {
 @BindingAdapter(value = ["bind:setTextTranslate"])
 fun TextView.setTextTranslate(data: String?) {
     text = when (Locale.getDefault().language) {
-        "vi" -> {
-            data.let {
-                val response = RetrofitBuilder.apiService.getDataTranslate(
-                    it.toString(), Constant.API_KEY_TRANSLATE
-                )
-                response.let { response ->
-                    response.data?.translations?.joinToString { it.translatedText }
-                }
-            }
-        }
+//        "vi" -> {
+//            data.let {
+//                val response = RetrofitBuilder.apiService.getDataTranslate(
+//                    it.toString(), Constant.API_KEY_TRANSLATE
+//                )
+//                response.let { response ->
+//                    response.data?.translations?.joinToString { it.translatedText }
+//                }
+//            }
+//        }
         else -> data
     }
 }
