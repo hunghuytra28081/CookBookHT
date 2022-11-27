@@ -15,11 +15,12 @@ class RecipeRemoteDataSource(private val apiService: APIService) : RecipeDataSou
         apiService.getRecipeDetail(id)
     }
 
-    override suspend fun searchRecipe(keyword: String, number: Int) = withContext(Dispatchers.IO) {
-        apiService.searchRecipe(keyword, number)
+    override suspend fun searchRecipe(keyword: String, offset: Int) = withContext(Dispatchers.IO) {
+        apiService.searchRecipe(keyword = keyword, offset = offset)
     }
 
-    override suspend fun searchIngredient(keyword: String, number: Int) = withContext(Dispatchers.IO) {
+    override suspend fun searchIngredient(keyword: String, number: Int) =
+        withContext(Dispatchers.IO) {
             apiService.searchIngredient(keyword, number)
         }
 }

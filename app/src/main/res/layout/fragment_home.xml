@@ -13,6 +13,14 @@
         <variable
             name="viewModel"
             type="com.example.cookbookht.ui.home.HomeViewModel" />
+
+        <variable
+            name="searchAdapter"
+            type="com.example.cookbookht.ui.home.HomeAdapter" />
+
+        <variable
+            name="searchViewModel"
+            type="com.example.cookbookht.ui.search.SearchViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -54,13 +62,13 @@
                             android:id="@+id/settingLanguage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:padding="@dimen/_10sdp"
                             android:src="@drawable/ic_setting_language"
-                            app:layout_constraintTop_toTopOf="@+id/titleTextView"
+                            android:translationZ="@dimen/_10sdp"
                             app:layout_constraintBottom_toBottomOf="@+id/titleTextView"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:padding="@dimen/_10sdp"
-                            android:translationZ="@dimen/_10sdp"
-                            android:layout_marginEnd="@dimen/_10sdp"/>
+                            app:layout_constraintTop_toTopOf="@+id/titleTextView" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/titleTextView"
@@ -98,51 +106,77 @@
                             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/sliderCardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:elevation="0dp"
+                        app:layout_constraintDimensionRatio="411: 200"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layoutTitleConstraintLayout">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_slide">
+
+                            <com.asksira.loopingviewpager.LoopingViewPager
+                                android:id="@+id/sliderViewPager"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clipToPadding="false"
+                                app:abb_selectedIndex="1"
+                                app:autoScroll="true"
+                                app:isInfinite="true"
+                                app:itemAspectRatio="1.33"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:scrollInterval="3000"
+                                app:viewpagerAspectRatio="2.5" />
+
+                            <com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
+                                android:id="@+id/indicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:layout_marginBottom="@dimen/_8sdp"
+                                android:visibility="invisible"
+                                app:indicator_spacing="@dimen/_4sdp"
+                                app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
+                                app:layout_constraintRight_toRightOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/sliderCardView"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_120sdp"
-                android:layout_marginVertical="@dimen/_15sdp"
-                android:layout_marginHorizontal="@dimen/_4sdp"
-                app:layout_constraintDimensionRatio="411: 200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:cardElevation="0dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <nl.joery.animatedbottombar.AnimatedBottomBar
+                    android:id="@+id/animateTab"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/bg_tab_home"
+                    app:abb_indicatorAppearance="round"
+                    app:abb_indicatorHeight="4dp"
+                    app:abb_indicatorLocation="bottom"
+                    app:abb_indicatorMargin="16dp"
+                    app:abb_selectedIndex="0"
+                    app:abb_selectedTabType="text"
+                    app:abb_tabAnimationSelected="slide"
+                    app:abb_tabColor="@color/color_black"
+                    app:abb_tabs="@menu/tab_home"
+                    app:abb_textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
 
-                    <com.asksira.loopingviewpager.LoopingViewPager
-                        android:id="@+id/sliderViewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/color_purple_dark"
-                        android:clipToPadding="false"
-                        app:autoScroll="true"
-                        app:isInfinite="true"
-                        app:itemAspectRatio="1.33"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:scrollInterval="3000"
-                        app:viewpagerAspectRatio="2.5" />
-
-                    <com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
-                        android:id="@+id/indicator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        app:indicator_spacing="@dimen/_4sdp"
-                        android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
-                        app:layout_constraintRight_toRightOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -155,72 +189,112 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                    android:id="@+id/swipeRefresh"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutRandom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    bind:onRefresh="@{viewModel.onRefresh}">
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recipeHomeRecyclerView"
+                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/swipeRefresh"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        bind:adapter="@{homeAdapter}"
-                        bind:data="@{viewModel.recipe}"
-                        bind:isLoad="@{viewModel.isLoad}"
-                        bind:onLoadMore="@{viewModel.onLoadData}"
-                        tools:listitem="@layout/item_recipe_home" />
-                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        bind:onRefresh="@{viewModel.onRefresh}">
 
-<!--                <include-->
-<!--                    android:id="@+id/progressLayout"-->
-<!--                    layout="@layout/loader_view" />-->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recipeHomeRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_white"
+                            android:paddingTop="@dimen/_6sdp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            bind:adapter="@{homeAdapter}"
+                            bind:data="@{viewModel.recipe}"
+                            bind:isLoad="@{viewModel.isLoad}"
+                            bind:onLoadMore="@{viewModel.onLoadData}"
+                            tools:listitem="@layout/item_recipe_home" />
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutFood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/swipeRefreshFood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        bind:onRefresh="@{searchViewModel.onRefresh}">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recipeFoodRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_white"
+                            android:paddingTop="@dimen/_6sdp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            bind:adapter="@{searchAdapter}"
+                            bind:data="@{searchViewModel.recipes}"
+                            bind:isLoad="@{searchViewModel.isLoad}"
+                            bind:onLoadMore="@{searchViewModel.onLoadData}"
+                            tools:listitem="@layout/item_recipe_home" />
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--                <include-->
+                <!--                    android:id="@+id/progressLayout"-->
+                <!--                    layout="@layout/loader_view" />-->
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/layoutEmpty"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/color_white"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:paddingTop="@dimen/_58sdp"
-                    android:visibility="gone"
-                    android:background="@color/color_white">
+                    android:visibility="gone">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/_86sdp"
                         android:layout_height="@dimen/_86sdp"
-                        android:src="@drawable/empty"/>
+                        android:src="@drawable/empty" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/recipe_empty"
-                        android:textSize="@dimen/_13sdp"
                         android:layout_marginHorizontal="@dimen/_22sdp"
-                        android:textColor="@color/black_grey_text"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:textStyle="bold"/>
+                        android:text="@string/recipe_empty"
+                        android:textColor="@color/black_grey_text"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/check_late"
-                        android:textSize="@dimen/_11sdp"
                         android:layout_marginHorizontal="@dimen/_22sdp"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:textColor="#7D7F86" />
+                        android:text="@string/check_late"
+                        android:textColor="#7D7F86"
+                        android:textSize="@dimen/_11sdp" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/progressLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:background="@color/color_white">
+                    android:background="@color/color_white"
+                    android:gravity="center_horizontal">
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/spin_kit"
@@ -229,7 +303,7 @@
                         android:layout_marginTop="@dimen/_100sdp"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/load"/>
+                        app:lottie_rawRes="@raw/load" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

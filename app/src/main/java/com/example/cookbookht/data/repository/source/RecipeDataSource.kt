@@ -15,7 +15,7 @@ interface RecipeDataSource {
 
         suspend fun getRecipeDetail(id: Int?): RecipeDetail
 
-        suspend fun searchRecipe (keyword: String, number: Int): SearchRecipeResponse
+        suspend fun searchRecipe (keyword: String, offset: Int): SearchRecipeResponse
 
         suspend fun searchIngredient (keyword: String, number: Int): MutableList<Recipe>
     }

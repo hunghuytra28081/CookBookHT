@@ -22,6 +22,7 @@ class SearchViewModel(
     LoadMoreRecyclerViewListener,
     RefreshRecyclerViewListener {
 
+    private var currentPosition = Constant.DEFAULT_OFFSET
     private var currentNumber: Int = Constant.DEFAULT_NUMBER_RECIPE
     private var keyword: String = Constant.DEFAULT_STRING
 
@@ -61,6 +62,7 @@ class SearchViewModel(
 
     override fun onRefresh() {
         _recipes.value?.clear()
+        currentPosition = Constant.DEFAULT_OFFSET
         searchRecipe(keyword)
     }
 
@@ -74,10 +76,11 @@ class SearchViewModel(
         searchRecipe(keyword)
     }
 
+
     fun searchRecipe(keyword: String = Constant.DEFAULT_STRING) {
         viewModelScope.launch {
             try {
-                repository.searchRecipe(keyword, currentNumber).let { recipe ->
+                repository.searchRecipe(keyword, currentPosition).let { recipe ->
                     if (recipe.recipes.size == 0) {
                         removeItemLoading()
                         _isLoad.value = true
@@ -85,13 +88,11 @@ class SearchViewModel(
                     } else if (recipe.recipes.size >= currentNumber) {
                         addItemLoad(recipe.recipes)
                     }
-                    _recipes.plusAssign(
-                        recipe.recipes
-                    )
-                    currentNumber += Constant.DEFAULT_NUMBER_RECIPE
-                    _isLoad.value = false
+                    _recipes.plusAssign(recipe.recipes)
+//                    currentNumber += Constant.DEFAULT_NUMBER_RECIPE
                 }
                 _resource.postValue(Resource.success(data = recipes))
+                currentPosition++
                 _isLoad.value = false
             } catch (e: Exception) {
                 _resource.postValue(Resource.error(data = null, message = e.localizedMessage))

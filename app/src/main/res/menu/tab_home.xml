@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/tab_random"
+        android:icon="@drawable/ic_random"
+        android:title="@string/random" />
+    <item
+        android:id="@+id/tab_food"
+        android:icon="@drawable/ic_foods"
+        android:title="@string/foods" />
+    <item
+        android:id="@+id/tab_drink"
+        android:icon="@drawable/ic_drinks"
+        android:title="@string/drinks" />
 </menu>

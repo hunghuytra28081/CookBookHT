@@ -12,7 +12,7 @@ class RecipeRepository(
 
     suspend fun getRecipeDetail(id: Int?) = remote.getRecipeDetail(id)
 
-    suspend fun searchRecipe(keyword: String, number: Int) = remote.searchRecipe(keyword, number)
+    suspend fun searchRecipe(keyword: String, offset: Int) = remote.searchRecipe(keyword, offset)
 
     suspend fun searchIngredient(keyword: String, number: Int) = remote.searchIngredient(keyword, number)
 

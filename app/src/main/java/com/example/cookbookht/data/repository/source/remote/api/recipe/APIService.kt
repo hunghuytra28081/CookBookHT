@@ -21,11 +21,12 @@ interface APIService {
         @Query("includeNutrition") include: Boolean = true
     ): RecipeDetail
 
-    //api.spoonacular.com/recipes/complexSearch?query=pasta&number=2&apiKey=cf90ee8d96ad45a68cb4c292a2aabdfa
+    //api.spoonacular.com/recipes/complexSearch?query=drink&offset=2&number=20&apiKey=cf90ee8d96ad45a68cb4c292a2aabdfa
     @GET("complexSearch")
     suspend fun searchRecipe(
         @Query("query") keyword: String,
-        @Query("number") number: Int,
+        @Query("offset") offset: Int,
+        @Query("number") number: Int = 20
     ): SearchRecipeResponse
 
     //https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=cf90ee8d96ad45a68cb4c292a2aabdfa

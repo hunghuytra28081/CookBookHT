@@ -14,7 +14,7 @@
         android:id="@+id/itemHomeCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_15sdp"
+        app:cardCornerRadius="@dimen/_12sdp"
         android:layout_marginBottom="@dimen/_15sdp"
         app:cardUseCompatPadding="true">
 

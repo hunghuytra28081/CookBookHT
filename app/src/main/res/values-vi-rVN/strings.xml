@@ -38,6 +38,7 @@
     <string name="vietnamese">Tiếng Việt</string>
     <string name="english">Tiếng Anh</string>
 
-<!--    &lt;!&ndash;change language&ndash;&gt;-->
-<!--    <string name="change_language_title">Ngôn Ngữ</string>-->
+    <string name="random">Ngẫu Nhiên</string>
+    <string name="foods">Thức Ăn</string>
+    <string name="drinks">Đồ Uống</string>
 </resources>

@@ -24,10 +24,14 @@ import com.example.cookbookht.extension.clickWithDebounce
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
 import com.example.cookbookht.sharePreference.Preferences
+import com.example.cookbookht.ui.search.SearchViewModel
 import com.example.cookbookht.ui.sheetDialog.SheetSettingLanguage
 import com.example.cookbookht.ui.slide.SlideActivity
+import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.swipeRefresh
+import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Exception
@@ -35,13 +39,16 @@ import java.util.*
 
 class HomeFragment : Fragment() {
 
+    private lateinit var binding: FragmentHomeBinding
+
     private var dataSlide = mutableListOf<Drawable>()
     private lateinit var sliderAdapter: SliderAdapter
 
     private val prefs: Preferences by inject()
 
     private val homeViewModel by viewModel<HomeViewModel>()
-    private lateinit var binding: FragmentHomeBinding
+    private val searchViewModel by viewModel<SearchViewModel>()
+    private val searchAdapter = HomeAdapter(this::onClickItemHome, prefs, lifecycleScope)
     private val homeAdapter = HomeAdapter(this::onClickItemHome, prefs, lifecycleScope)
 
     override fun onCreateView(
@@ -116,6 +123,8 @@ class HomeFragment : Fragment() {
             lifecycleOwner = this@HomeFragment
             viewModel = this@HomeFragment.homeViewModel
             homeAdapter = this@HomeFragment.homeAdapter
+            searchViewModel = this@HomeFragment.searchViewModel
+            searchAdapter = this@HomeFragment.searchAdapter
         }
     }
 
@@ -132,6 +141,25 @@ class HomeFragment : Fragment() {
                 Status.ERROR -> {
                     binding.progressLayout.toGone()
                     binding.swipeRefresh.isRefreshing = false
+                }
+            }
+
+            binding.layoutEmpty.isVisible = it.data?.value.isNullOrEmpty()
+        }
+
+//        searchViewModel.searchRecipe(Constant.DEFAULT_FOOD)
+        searchViewModel.resource.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.LOADING -> {
+                    binding.progressLayout.toVisible()
+                }
+                Status.SUCCESS -> {
+                    binding.progressLayout.toGone()
+                    binding.swipeRefreshFood.isRefreshing = false
+                }
+                Status.ERROR -> {
+                    binding.progressLayout.toGone()
+                    binding.swipeRefreshFood.isRefreshing = false
                 }
             }
 
@@ -176,6 +204,37 @@ class HomeFragment : Fragment() {
                 }
             }.show(childFragmentManager, null)
         }
+        binding.animateTab.onTabSelected = {
+            Log.d("Hung_bottom_bar", "Selected tab: " + it.title)
+
+            when (it.title) {
+                resources.getString(R.string.random) -> {
+                    //                    homeViewModel.onRefresh()
+                    binding.layoutRandom.isVisible = true
+                    binding.layoutFood.isVisible = false
+                }
+                resources.getString(R.string.foods) -> {
+                    searchViewModel.onRefreshSearch("food")
+                    binding.layoutRandom.isVisible = false
+                    binding.layoutFood.isVisible = true
+
+                    swipeRefreshFood.setOnRefreshListener {
+                        searchViewModel.onRefreshSearch("food")
+                    }
+                }
+                resources.getString(R.string.drinks) -> {
+                    searchViewModel.onRefreshSearch("drinks")
+                    binding.layoutRandom.isVisible = false
+                    binding.layoutFood.isVisible = true
+
+                    swipeRefreshFood.setOnRefreshListener {
+                        searchViewModel.onRefreshSearch("drinks")
+                    }
+                }
+            }
+        }
+
+        binding.animateTab.selectedTab
     }
 
     private fun changeLanguage(language: String) {
