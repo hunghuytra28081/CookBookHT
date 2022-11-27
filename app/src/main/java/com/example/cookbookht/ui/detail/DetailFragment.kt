@@ -17,6 +17,7 @@ import com.example.cookbookht.databinding.FragmentDetailBinding
 import com.example.cookbookht.extension.clickWithDebounce
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
+import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.utils.Constant.API_KEY_TRANSLATE
 import com.example.cookbookht.utils.Status
 import com.google.gson.Gson
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import retrofit2.await
 
@@ -34,6 +36,8 @@ class DetailFragment : Fragment() {
     private var recipeId: Int? = null
     private val recipeDetailViewModel: RecipeDetailViewModel by sharedViewModel()
     private var favorite: Favorite? = null
+
+    private val prefs: Preferences by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,14 +104,19 @@ class DetailFragment : Fragment() {
                         binding.progressLayout.toGone()
                         it.data?.run {
                             CoroutineScope(Dispatchers.Main).launch {
-                                try {
-                                    val response = RetrofitBuilder.apiService.getDataTranslate(summary ?: "", API_KEY_TRANSLATE).await()
-                                    Log.e("Main12345","Response: ${Gson().toJson(response)}")
-                                    binding.recipeDetail?.summary = response.data.translations.joinToString { it.translatedText }
-                                    binding.recipeDetail = binding.recipeDetail
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                    Log.d("Main12345", "Error: $e")
+                                when (prefs.isLanguageVi.get()) {
+                                    "vi" -> {
+                                        try {
+                                            val response = RetrofitBuilder.apiService.getDataTranslate(summary ?: "", API_KEY_TRANSLATE).await()
+                                            Log.e("Main12345","Response: ${Gson().toJson(response)}")
+                                            binding.recipeDetail?.summary = response.data.translations.joinToString { it.translatedText }
+                                            binding.recipeDetail = binding.recipeDetail
+                                        } catch (e: Exception) {
+                                            e.printStackTrace()
+                                            Log.d("Main12345", "Error: $e")
+                                        }
+                                    }
+                                    else ->{}
                                 }
                             }
 
