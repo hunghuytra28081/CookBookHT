@@ -6,9 +6,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.cookbookht.R
 import com.example.cookbookht.binding.loadImage
 import com.example.cookbookht.data.model.Ingredient
 import com.example.cookbookht.databinding.ItemIngredientBinding
+import com.example.cookbookht.extension.loadFromUrl
 import com.example.cookbookht.utils.BindingDataRecyclerView
 import com.example.cookbookht.utils.Constant
 
@@ -50,7 +53,13 @@ class IngredientDetailViewHolder(
     fun onBind(ingredient: Ingredient) {
         binding.apply {
             this.ingredient = ingredient
-            imageIngredient.loadImage(Constant.BASE_URL_IMAGE_INGREDIENT + ingredient.image)
+//            imageIngredient.loadImage(Constant.BASE_URL_IMAGE_INGREDIENT + ingredient.image)
+            Glide.with(imageIngredient.context)
+                .load(Constant.BASE_URL_IMAGE_INGREDIENT + ingredient.image)
+                .error(R.drawable.recipe_black)
+                .placeholder(R.drawable.loading_icon_opacity)
+                .centerCrop()
+                .into(imageIngredient)
             executePendingBindings()
             root.setOnClickListener {
                 onItemClick(ingredient)

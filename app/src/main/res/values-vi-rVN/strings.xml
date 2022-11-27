@@ -39,6 +39,8 @@
     <string name="english">Tiếng Anh</string>
 
     <string name="random">Ngẫu Nhiên</string>
-    <string name="foods">Thức Ăn</string>
     <string name="drinks">Đồ Uống</string>
+    <string name="beef">Thịt</string>
+    <string name="this_recipe_no_steps">Công thức không có cách nấu</string>
+    <string name="process_of_updating">Công thức này đang trong quá trình cập nhật</string>
 </resources>

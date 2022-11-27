@@ -35,7 +35,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:paddingBottom="@dimen/_50sdp"
+            android:orientation="vertical"
+            android:background="@color/color_white">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_86sdp"
+                android:layout_height="@dimen/_86sdp"
+                android:src="@drawable/empty"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/this_recipe_no_steps"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginHorizontal="@dimen/_22sdp"
+                android:textColor="@color/black_grey_text"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/process_of_updating"
+                android:textSize="@dimen/_11sdp"
+                android:layout_marginHorizontal="@dimen/_22sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:textColor="#7D7F86" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
         <include
             android:id="@+id/progressLayout"
             layout="@layout/loader_view" />

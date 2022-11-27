@@ -111,7 +111,7 @@
                         android:id="@+id/sliderCardView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_120sdp"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginHorizontal="@dimen/_4sdp"
                         android:elevation="0dp"
                         app:layout_constraintDimensionRatio="411: 200"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -156,14 +156,13 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_12sdp"
                 app:cardElevation="0dp">
 
                 <nl.joery.animatedbottombar.AnimatedBottomBar
                     android:id="@+id/animateTab"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
                     android:background="@drawable/bg_tab_home"
                     app:abb_indicatorAppearance="round"
                     app:abb_indicatorHeight="4dp"
