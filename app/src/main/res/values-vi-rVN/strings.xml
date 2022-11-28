@@ -43,4 +43,5 @@
     <string name="beef">Thịt</string>
     <string name="this_recipe_no_steps">Công thức không có cách nấu</string>
     <string name="process_of_updating">Công thức này đang trong quá trình cập nhật</string>
+    <string name="step2">Bước:</string>
 </resources>

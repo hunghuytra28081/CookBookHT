@@ -13,7 +13,7 @@ data class Step(
     val number: Int?,
     @SerializedName("step")
     @Expose
-    val step: String?
+    var step: String?
 ) : Parcelable {
 
     companion object {

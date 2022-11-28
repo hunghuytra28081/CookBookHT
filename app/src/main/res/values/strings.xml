@@ -45,5 +45,6 @@
     <string name="beef">Beef</string>
     <string name="this_recipe_no_steps">This recipe no Steps</string>
     <string name="process_of_updating">This recipe is in the process of updating</string>
+    <string name="step2">Step:</string>
 
 </resources>

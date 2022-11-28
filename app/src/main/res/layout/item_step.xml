@@ -22,7 +22,7 @@
             android:id="@+id/textViewNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Step: "
+            android:text="@string/step2"
             android:textColor="@color/color_black_dark"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
@@ -37,6 +37,7 @@
             android:textColor="@color/color_black_dark"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
+            android:layout_marginStart="@dimen/_1sdp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewNumber" />
 

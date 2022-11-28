@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 data class Nutrient(
     @SerializedName("name")
     @Expose
-    val name: String?,
+    var name: String?,
     @SerializedName("amount")
     @Expose
     val amount: Double?,

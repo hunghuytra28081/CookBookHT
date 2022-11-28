@@ -20,18 +20,22 @@ import com.example.cookbookht.databinding.FragmentIngredientDetailBinding
 import com.example.cookbookht.extension.clickWithDebounce
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
+import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.Status
 import kotlinx.android.synthetic.main.fragment_ingredient_detail.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class IngredientDetailFragment(
     private val recipeDetailId: Int?
 ) : Fragment() {
 
+    private val prefs: Preferences by inject()
+
     private lateinit var binding: FragmentIngredientDetailBinding
     private val ingredientViewModel by viewModel<IngredientDetailViewModel>()
-    private val ingredientAdapter = IngredientDetailAdapter(::onClickItemIngredient)
+    private val ingredientAdapter = IngredientDetailAdapter(::onClickItemIngredient, prefs)
     private val searchIngredientAdapter = SearchIngredientAdapter(::onClickItemSearchIngredient)
 
     override fun onCreateView(
@@ -103,7 +107,7 @@ class IngredientDetailFragment(
             ingredientViewModel.onClearData()
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.progressLayoutContent.toVisible()
-            },500)
+            }, 500)
         }
 
         layoutSearchIngredient.clickWithDebounce {
@@ -115,7 +119,7 @@ class IngredientDetailFragment(
         binding.imageIngredient.loadImage(Constant.BASE_URL_IMAGE_INGREDIENT + ingredient.image)
         titleIngredient.text = ingredient.name
 
-        val textSearch = ingredient.name?.replace(" ","%2C")
+        val textSearch = ingredient.name?.replace(" ", "%2C")
         textSearch?.let {
             ingredientViewModel.fetchSearchIngredient(it)
         }

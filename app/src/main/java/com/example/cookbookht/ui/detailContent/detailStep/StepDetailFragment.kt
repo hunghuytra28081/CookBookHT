@@ -10,15 +10,19 @@ import com.example.cookbookht.data.model.Step
 import com.example.cookbookht.databinding.FragmentStepDetailBinding
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
+import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.utils.Status
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StepDetailFragment(
     private val stepId: Int?
 ) : Fragment() {
 
+    private val prefs: Preferences by inject()
+
     private lateinit var binding: FragmentStepDetailBinding
-    private val stepAdapter by lazy { StepDetailAdapter(::onClickItemStep) }
+    private val stepAdapter by lazy { StepDetailAdapter(::onClickItemStep, prefs) }
     private val stepViewModel by viewModel<StepDetailViewModel>()
 
     override fun onCreateView(

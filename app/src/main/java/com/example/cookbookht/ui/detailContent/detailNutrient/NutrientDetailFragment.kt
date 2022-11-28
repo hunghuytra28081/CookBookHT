@@ -18,6 +18,7 @@ import com.example.cookbookht.databinding.FragmentNutrientDetailBinding
 import com.example.cookbookht.extension.chart.nutrientToGam
 import com.example.cookbookht.extension.toGone
 import com.example.cookbookht.extension.toVisible
+import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.utils.Status
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
@@ -31,6 +32,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import kotlinx.android.synthetic.main.fragment_nutrient_detail.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NutrientDetailFragment(
@@ -40,9 +42,11 @@ class NutrientDetailFragment(
     private lateinit var tfRegular: Typeface
     private lateinit var tfLight: Typeface
 
+    private val prefs: Preferences by inject()
+
     private lateinit var binding: FragmentNutrientDetailBinding
     private val nutrientViewModel by viewModel<NutrientDetailViewModel>()
-    private val nutrientAdapter by lazy { NutrientDetailAdapter(::onClickItemNutrient) }
+    private val nutrientAdapter by lazy { NutrientDetailAdapter(::onClickItemNutrient, prefs) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

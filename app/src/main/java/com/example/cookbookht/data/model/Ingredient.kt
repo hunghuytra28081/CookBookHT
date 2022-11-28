@@ -22,7 +22,7 @@ data class Ingredient(
     val amount: Double?,
     @SerializedName("unit")
     @Expose
-    val unit: String?
+    var unit: String?
 ) : Parcelable {
 
     companion object {
