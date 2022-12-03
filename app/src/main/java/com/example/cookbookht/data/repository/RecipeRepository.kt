@@ -3,6 +3,7 @@ package com.example.cookbookht.data.repository
 import com.example.cookbookht.data.repository.source.RecipeDataSource
 import com.example.cookbookht.data.repository.source.local.entities.Favorite
 import com.example.cookbookht.data.repository.source.local.entities.History
+import com.example.cookbookht.data.repository.source.local.entities.User
 
 class RecipeRepository(
     private val remote: RecipeDataSource.Remote,
@@ -31,4 +32,8 @@ class RecipeRepository(
     suspend fun deleteFavorite(favorite: Favorite) = local.deleteFavorite(favorite)
 
     suspend fun alreadyFavorite(id: Int?) = local.alreadyFavorite(id)
+
+    fun login(userName: String, pass: String) : User? = local.login(userName, pass)
+
+    suspend fun insertUser(user: User) = local.insertUser(user)
 }

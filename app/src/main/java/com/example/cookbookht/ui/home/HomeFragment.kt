@@ -27,6 +27,7 @@ import com.example.cookbookht.sharePreference.Preferences
 import com.example.cookbookht.ui.search.SearchViewModel
 import com.example.cookbookht.ui.sheetDialog.SheetSettingLanguage
 import com.example.cookbookht.ui.slide.SlideActivity
+import com.example.cookbookht.ui.splash.SplashActivity
 import com.example.cookbookht.utils.Constant
 import com.example.cookbookht.utils.Status
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -231,6 +232,16 @@ class HomeFragment : Fragment() {
                     }
                 }
 
+                resources.getString(R.string.fish) -> {
+                    searchViewModel.onRefreshSearch("fish")
+                    binding.layoutRandom.isVisible = false
+                    binding.layoutFood.isVisible = true
+
+                    swipeRefreshFood.setOnRefreshListener {
+                        searchViewModel.onRefreshSearch("fish")
+                    }
+                }
+
                 resources.getString(R.string.drinks) -> {
                     searchViewModel.onRefreshSearch("drinks")
                     binding.layoutRandom.isVisible = false
@@ -255,7 +266,7 @@ class HomeFragment : Fragment() {
             config,
             resources.displayMetrics
         )
-        val intent = Intent(requireContext(), SlideActivity::class.java)
+        val intent = Intent(requireContext(), SplashActivity::class.java)
         startActivity(intent)
     }
 

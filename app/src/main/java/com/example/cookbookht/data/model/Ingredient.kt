@@ -13,7 +13,7 @@ data class Ingredient(
     val id: Int?,
     @SerializedName("name")
     @Expose
-    val name: String?,
+    var name: String?,
     @SerializedName("image")
     @Expose
     val image: String?,

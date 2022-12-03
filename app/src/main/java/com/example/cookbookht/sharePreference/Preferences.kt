@@ -10,4 +10,5 @@ class Preferences(
 
     val isFistTime = rxPrefs.getBoolean("isFistTime", true)
     val isLanguageVi = rxPrefs.getString("isLanguageVi", "vi")
+    val isLoginSuccess = rxPrefs.getBoolean("isLoginSuccess", false)
 }

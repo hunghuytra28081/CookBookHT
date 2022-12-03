@@ -8,6 +8,7 @@ import com.example.cookbookht.R
 import com.example.cookbookht.data.model.Slide
 import com.example.cookbookht.extension.viewInVisible
 import com.example.cookbookht.extension.viewVisible
+import com.example.cookbookht.ui.login.LoginActivity
 import com.example.cookbookht.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_slide.*
 
@@ -29,13 +30,13 @@ class SlideActivity : AppCompatActivity() {
         }
 
         btn_next.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         tv_skip.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

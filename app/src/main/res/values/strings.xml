@@ -43,8 +43,34 @@
     <string name="pizza" translatable="false">Pizza</string>
     <string name="drinks">Drinks</string>
     <string name="beef">Beef</string>
+    <string name="fish">Fish</string>
     <string name="this_recipe_no_steps">This recipe no Steps</string>
     <string name="process_of_updating">This recipe is in the process of updating</string>
     <string name="step2">Step:</string>
+    <string name="slogan_login">Good cooking, \nHappy family</string>
+    <string name="login_to_continue">Login to continue</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="remember_pass">Remember Password</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="go">GO</string>
+    <string name="log_in">Log in</string>
+    <string name="dont_have_account">Don\'t have an account? Register</string>
+    <string name="happy_cooking">Happy cooking</string>
+    <string name="register_to">Register to be a member of HT-Cook</string>
+    <string name="full_name">Full Name</string>
+    <string name="password_again">Password again</string>
+    <string name="has_account">You registered? Login</string>
 
+    <string name="no_full_name">Empty Full Name</string>
+    <string name="no_user_name">Empty Username</string>
+    <string name="no_pass">Empty Password</string>
+    <string name="no_space">No space</string>
+    <string name="no_than_15_word">No more than 15 words</string>
+    <string name="has_1_uppercase">Has at least one uppercase character</string>
+    <string name="has_1_number">Has at least one number</string>
+    <string name="pass_to_short">Password is too short</string>
+    <string name="pass_wrong">Password is wrong</string>
+    <string name="user_wrong">UserName or Password is wrong</string>
+    <string name="sign_up_success">Sign up success, please Login!</string>
 </resources>

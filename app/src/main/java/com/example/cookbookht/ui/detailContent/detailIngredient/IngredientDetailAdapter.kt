@@ -84,9 +84,15 @@ class IngredientDetailViewHolder(
                             ingredient.unit ?: "",
                             Constant.API_KEY_TRANSLATE
                         ).await()
-                        Log.e("Main12345", "Response: ${Gson().toJson(response)}")
-                        binding.ingredient?.unit =
-                            response.data.translations.joinToString { it.translatedText }
+
+                        val response2 = RetrofitBuilder.apiService.getDataTranslate(
+                            ingredient.name ?: "",
+                            Constant.API_KEY_TRANSLATE
+                        ).await()
+
+                        binding.ingredient?.unit = response.data.translations.joinToString { it.translatedText }
+                        binding.ingredient?.name = response2.data.translations.joinToString { it.translatedText }
+
                         binding.ingredient = binding.ingredient
                     } catch (e: Exception) {
                         e.printStackTrace()

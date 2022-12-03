@@ -3,10 +3,11 @@ package com.example.cookbookht.data.repository.source.local
 import com.example.cookbookht.data.repository.source.RecipeDataSource
 import com.example.cookbookht.data.repository.source.local.entities.Favorite
 import com.example.cookbookht.data.repository.source.local.entities.History
+import com.example.cookbookht.data.repository.source.local.entities.User
 
-class RecipeLocalDataResource( private val recipeDao: RecipeDao) : RecipeDataSource.Local {
+class RecipeLocalDataResource(private val recipeDao: RecipeDao) : RecipeDataSource.Local {
 
-    override suspend fun getAllHistory():List<History> {
+    override suspend fun getAllHistory(): List<History> {
         return recipeDao.getAllHistory()
     }
 
@@ -37,5 +38,14 @@ class RecipeLocalDataResource( private val recipeDao: RecipeDao) : RecipeDataSou
 
     override suspend fun alreadyFavorite(id: Int?): Favorite {
         return recipeDao.isFavorite(id)
+    }
+
+    //Login
+    override fun login(userName: String, pass: String): User? {
+        return recipeDao.login(userName, pass)
+    }
+
+    override suspend fun insertUser(user: User) {
+        return recipeDao.insertUser(user)
     }
 }

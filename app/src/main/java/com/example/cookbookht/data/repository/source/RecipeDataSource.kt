@@ -6,6 +6,7 @@ import com.example.cookbookht.data.model.RecipeResponse
 import com.example.cookbookht.data.model.SearchRecipeResponse
 import com.example.cookbookht.data.repository.source.local.entities.Favorite
 import com.example.cookbookht.data.repository.source.local.entities.History
+import com.example.cookbookht.data.repository.source.local.entities.User
 
 interface RecipeDataSource {
 
@@ -36,5 +37,9 @@ interface RecipeDataSource {
         suspend fun deleteFavorite(favorite: Favorite)
 
         suspend fun alreadyFavorite(id: Int?) : Favorite
+
+        fun login(userName: String, pass: String): User?
+
+        suspend fun insertUser(user: User)
     }
 }

@@ -39,9 +39,15 @@ class SplashActivity : AppCompatActivity() {
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, SlideActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (prefs.isLoginSuccess.get()){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                val intent = Intent(this, SlideActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }, 4500)
     }
 

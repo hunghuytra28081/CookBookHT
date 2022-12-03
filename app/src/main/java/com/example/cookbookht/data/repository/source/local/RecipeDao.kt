@@ -3,6 +3,7 @@ package com.example.cookbookht.data.repository.source.local
 import androidx.room.*
 import com.example.cookbookht.data.repository.source.local.entities.Favorite
 import com.example.cookbookht.data.repository.source.local.entities.History
+import com.example.cookbookht.data.repository.source.local.entities.User
 
 @Dao
 interface RecipeDao {
@@ -31,4 +32,12 @@ interface RecipeDao {
 
     @Query("SELECT * FROM favorite WHERE id LIKE :id")
     suspend fun isFavorite(id: Int?): Favorite
+
+    //Login
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUser(user: User)
+
+    @Query("SELECT * FROM user WHERE userName = :userName AND password = :pass")
+    fun login(userName: String, pass: String): User?
 }

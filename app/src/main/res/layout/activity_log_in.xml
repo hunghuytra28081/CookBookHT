@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/imvLogBanner"
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:src="@drawable/cookit"
+        android:transitionName="banner_trans" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLogLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alfa_slab_one"
+        android:letterSpacing="0.03"
+        android:textAllCaps="true"
+        android:transitionName="logo_trans"
+        android:text="@string/slogan_login"
+        android:textColor="#CB000000"
+        android:textSize="@dimen/_24sdp" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/login_to_continue"
+        android:textColor="#BE000000"
+        android:textSize="18dp"
+        android:transitionName="sign_trans" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <!--        Edt Username-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/logUsername"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:transitionName="username_trans">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--        Edt password-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/logPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:transitionName="password_trans"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <CheckBox-->
+<!--                android:id="@+id/cbxRemember"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="38dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:text="@string/remember_pass"-->
+<!--                android:textColor="#CC000000"-->
+<!--                android:textSize="@dimen/_12sdp" />-->
+
+<!--        </LinearLayout>-->
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/log_in"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:transitionName="go_trans" />
+
+        <Button
+            android:id="@+id/btnCallSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="#00000000"
+            android:elevation="0dp"
+            android:text="@string/dont_have_account"
+            android:textColor="#BE000000"
+            android:transitionName="call_trans" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+</LinearLayout>

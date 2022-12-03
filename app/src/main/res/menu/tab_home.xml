@@ -12,6 +12,10 @@
         android:icon="@drawable/ic_beef"
         android:title="@string/beef" />
     <item
+        android:id="@+id/tab_fish"
+        android:icon="@drawable/ic_fish"
+        android:title="@string/fish" />
+    <item
         android:id="@+id/tab_drink"
         android:icon="@drawable/ic_drinks"
         android:title="@string/drinks" />

@@ -6,6 +6,7 @@ import com.example.cookbookht.ui.detailContent.detailNutrient.NutrientDetailView
 import com.example.cookbookht.ui.detailContent.detailStep.StepDetailViewModel
 import com.example.cookbookht.ui.favorite.FavoriteViewModel
 import com.example.cookbookht.ui.home.HomeViewModel
+import com.example.cookbookht.ui.login.LoginViewModel
 import com.example.cookbookht.ui.search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,4 +19,5 @@ val viewModelModule = module {
     viewModel { StepDetailViewModel(get()) }
     viewModel { SearchViewModel(get()) }
     viewModel { FavoriteViewModel(get()) }
+    viewModel { LoginViewModel(get()) }
 }

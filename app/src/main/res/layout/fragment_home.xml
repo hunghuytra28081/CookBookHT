@@ -53,7 +53,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@color/color_white"
-                        app:layout_constraintDimensionRatio="411:140"
+                        app:layout_constraintDimensionRatio="411:170"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -62,24 +62,37 @@
                             android:id="@+id/settingLanguage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:padding="@dimen/_10sdp"
                             android:src="@drawable/ic_setting_language"
                             android:translationZ="@dimen/_10sdp"
-                            app:layout_constraintBottom_toBottomOf="@+id/titleTextView"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/titleTextView" />
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_110sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_6sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/cookit"
+                            android:transitionName="banner_trans"
+                            android:translationY="@dimen/_32sdp"
+                            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView"
+                            app:layout_constraintEnd_toEndOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/titleTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_20sdp"
-                            android:fontFamily="@font/aclonica"
-                            android:letterSpacing="0.03"
+                            android:fontFamily="@font/alfa_slab_one"
+                            android:letterSpacing="0.08"
                             android:text="@string/app_logo_text"
                             android:textColor="@color/color_purple_dark"
                             android:textSize="@dimen/_32sdp"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:transitionName="logo_trans"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -102,6 +115,7 @@
                             android:text="@string/slogan"
                             android:textColor="@color/color_black_dark"
                             android:textSize="@dimen/_15sdp"
+                            android:transitionName="sign_trans"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 

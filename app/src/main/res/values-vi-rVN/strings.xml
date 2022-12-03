@@ -41,7 +41,34 @@
     <string name="random">Ngẫu Nhiên</string>
     <string name="drinks">Đồ Uống</string>
     <string name="beef">Thịt</string>
+    <string name="fish">Cá</string>
     <string name="this_recipe_no_steps">Công thức không có cách nấu</string>
     <string name="process_of_updating">Công thức này đang trong quá trình cập nhật</string>
     <string name="step2">Bước:</string>
+    <string name="slogan_login">Nấu ăn ngon, \nGia đình hạnh phúc</string>
+    <string name="login_to_continue">Đăng nhập để tiếp tục</string>
+    <string name="username">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="remember_pass">Nhớ Mật Khẩu</string>
+    <string name="forgot_pass">Quên mật khẩu?</string>
+    <string name="go">TIẾP</string>
+    <string name="log_in">Đăng Nhập</string>
+    <string name="dont_have_account">Chưa có tài khoản? Đăng kí</string>
+    <string name="happy_cooking">Nấu vui vẻ</string>
+    <string name="register_to">Đăng ký để làm thành viên của HT-Cook</string>
+    <string name="full_name">Họ tên</string>
+    <string name="password_again">Nhập lại mật khẩu</string>
+    <string name="has_account">Bạn đã đăng kí? ĐĂng nhập</string>
+
+    <string name="no_full_name">Chưa nhập Họ Tên</string>
+    <string name="no_user_name">Chưa nhập Tên Đăng Nhập</string>
+    <string name="no_pass">Chưa nhập Mật Khẩu</string>
+    <string name="no_space">Không được có khoảng trắng</string>
+    <string name="no_than_15_word">Không được quá 15 từ</string>
+    <string name="has_1_uppercase">Có ít nhất một kí tự in hoa</string>
+    <string name="has_1_number">Có ít nhất một số</string>
+    <string name="pass_to_short">Mật khẩu quá ngắn</string>
+    <string name="pass_wrong">Mật khẩu chưa đúng</string>
+    <string name="user_wrong">Tên Đăng Nhập hoặc Mật Khẩu bị sai</string>
+    <string name="sign_up_success">Đăng kí thành công, hãy đăng nhập!</string>
 </resources>
